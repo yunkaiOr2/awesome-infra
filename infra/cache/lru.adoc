@@ -1,0 +1,93 @@
+== lru（Least Recent Used）
+
+> 淘汰最不经常使用的
+
+HashMap + 双向链表
+
+. save(key, value),首先在HashMap找到Key对应的节点，如果节点存在，更新节点的值，并把
+这个几点移动队头。如果不存在，需要构造新的节点，并且尝试把节点塞到队头，如果LRU空间不足，
+则通过tail淘汰掉队尾的节点，同时在HashMap中移除Key。
+. get(key),通过HashMap找到LRU链表节点，因为根据LRU原理，这个节点是最新访问的，所以要把节点插入队头，然后返回缓存的值。
+
+== 近似lru（redis）
+
+如果按照HashMap和双向链表实现，需要额外的存储存放next和prev指针，牺牲较大的存储空间，显然是不划算的。所以redis采用了一个近似的做法，就是随机取出若干个key，然后
+按照访问时间排序后，淘汰掉最不经常使用的。
+
+为了支持LRU，Redis 2.8.19使用了一个全局LRU时钟
+.server.lruclock
+....
+# define REDIS_LRU_BITS 24
+unsigned lruclock:REDIS_LRU_BITS /* Clock for LRU eviction */
+....
+
+默认的LRU时钟的分辨率是1秒，可以通过改变REDIS_LRU_CLOCK_RESOLUTION 宏的值来改变，Redis会在serverCron()中调用updateLRUClock定期的更新LRU时钟，更新的频率和hz参数有关默认为100ms一次
+
+....
+#define REDIS_LRU_CLOCK_MAX ((1<<REDIS_LRU_BITS)-1) /* Max value of obj ->lru */
+#define REDIS_LRU_CLOCK_RESOLUTION 1 /** LRU clock resolution in seconds */
+
+void updateLRUClock(void) {
+    server.lruclock = (server.unixtime / REDIS_LRU_CLOCK_RESOLUTION) & REDIS_LRU_CLOCK_MAX;
+}
+....
+
+server.unixtime是系统当前的unix时间戳，当lruclock的值超出REDIS_LRU_CLOCK_MAX时，会从头还是计算，所以在计算一个key大最长没有访问时间时，可能key本身保存的lru访问时间会比lruclock还要大，这个时候需要计算额外时间
+
+....
+/**
+Given an object returns the min number of seconds the object was never
+requested, using an approximated LRU algorithm.
+ */
+unsigned long estimateObjectIdleTime(robj *o) {
+    if (server.lruclock >= o->lru) {
+        return (server.lruclock - o->lru) * REDIS_LRU_CLOCK_RESOLUTION;
+    } else {
+        return ((REDIS_LRU_CLOCK_MAX - o->lru) + server.lruclock) * REDIS_LRU_CLOCK_RESOLUTION;
+    }
+}
+....
+
+Redis支持和LRU相关淘汰策略包括
+
+. volatile-lru 设置了过期时间的key参与近似的lru淘汰策略
+. allkeys-lru 所有的key均参与近似的lru淘汰策略
+
+进行LRU淘汰时，Redis按如下方式进行：
+
+....
+
+......
+
+else if (server.maxmemory_policy == REDIS_MAXMEMORY_ALLKEYS_LRU || 
+    server.maxmemory_policy == REDIS_MAXMEMORY_VOLATILE_LRU) 
+{
+    for (k = 0; k < server.maxmemory_samples; k++) {
+        sds thiskey;
+        long thisval;
+        robj *o;
+
+        de = dictGetRandomKey(dict);
+        thiskey = dictGetkey(de);
+        /**
+        When policy is volatile-lru we need an additional lookup
+        to locate the real key, as dict is set to db->expires.
+         */
+        if (server.maxmemory_policy == REDIS_MAXMEMORY_VOLATILE_LRU)
+            de = dictFind(db->dict,thiskey);
+        o = dictGetVal(de);
+        thisval = estimateObjectIdleTime(o);
+
+        /* Higher idle time is better candidate for deletion*/
+        if (bestkey == NULL || thisval > bestval) {
+            bestkey = thiskey;
+            bestval = thisval;
+        }
+    }
+}
+....
+
+Redis会基于server.maxmemroy_samples 配置选取固定数目的key，然后比较它们的lru访问时间，然后淘汰最近最久没有访问的key，maxmemory_samples的值越大，Redis的近似LRU算法就约接近于严格LRU算法，但是相应消耗也变高，对性能有一定影响，样本值默认为5.
+
+== 缓存污染（mysql）
+

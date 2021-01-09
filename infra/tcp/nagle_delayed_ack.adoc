@@ -1,0 +1,41 @@
+== Nagle 算法
+
+.Nagle
+----
+if there is new data to send
+    if the window size >= MSS and available data is >= MSS
+        send complete MSS segment now
+    else
+        if there is unconfirmed data still in the pipe
+            equeue data in the buffer until an acknolege is received
+        else
+            send data immediately
+        end if
+    end if
+end if
+----
+
+. 如果发送内容大于1个MSS，立即发送；
+. 如果之前没有包未被ACK，立即发送；
+. 如果之前有包未被ACK，缓存发送内容
+. 如果收到ACK，立即发送缓存的内容。（MSS为TCP数据包每次能够传输的最大数据分段）
+
+== Delayed ACK
+
+TCP Delayed ACK(延迟确认)就是为了努力改善网络性能，它将几个ACK响应组合在一起成为单个响应，或者将ACK响应与响应数据一起发送给对方，从而减少协议开销。
+
+具体做法
+
+. 当有相应数据要发送时，ACK会随响应数据立即发送给对方；
+. 如果没有响应数据，ACK将会延迟发送，以等待看是否有响应数据可以一起发送。在Linux系统中，默认这个延迟时间是40ms;
+. 如果等待发送ACK期间，对方的第二个数据包又到达了，这时要立即发送ACK。但是如果对方的第三个数据包相继到达，第三个数据段到达时是否立即发送ACK，则取决于以上两条。
+
+== Nagle & Delayed ACK
+
+A和B进行数据传输：A运行Nagle算法，B运行Delayed ACK算法。
+
+如果A向B发一个数据包，B由于Delayed ACK不会立即响应。而A使用Nagle算法，A就会一直等B的ACK，ACK不来一直不发送第二个数据包，如果这两个数据包是对应同一个请求，那这个请求就会被延迟40ms。
+
+== TCP_NODELAY
+
+TCPNODELAY关闭了Nagle算法，即使上个数据包的ACK没有到达，也会发送下个数据包，近而打破Delayed ACK造成的影响。
