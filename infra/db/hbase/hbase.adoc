@@ -1,0 +1,67 @@
+
+== HBase特点
+
+=== HBase中的表一般有如下特点
+
+. 大： 一个表可以有上亿行，上百万列。
+. 面向列： 面向列表（簇）的存储和权限控制，列（簇）独立检索。
+. 稀疏： 对于为空（NULL）的列，并不占用存储空间，因此，表可以设计的非常稀疏。
+
+
+=== HBase访问接口
+
+HBase支持很多种访问，访问HBase的常见接口如下。
+
+. Native Java API，最常规和高效的访问方式，适合Hadoop MapReduce Job并行批处理HBase表数据。
+. HBase Shell, HBase的命令行工具，最简单的接口，适合HBase管理使用。
+. Thrift Gateway，利用Thrift序列化技术，支持C++，PHP，Python等多种语言，适合其他异构系统在线访问HBase表数据。
+. REST Gateway, 支持REST风格的Http API访问HBase，解除了语言限制。
+. Pig，可以使用Pig Latin流式编程语言来操作HBase中的数据，和Hive类似，本质最终也是编译成MapReduce Job来处理HBase表数据，适合做数据统计
+. Hive, 当前Hive的Release版本尚没有加入对HBase的支持，但在下一个版本Hive 0.7.0 中将会支持HBase，可以使用类似SQL语言来访问HBase。
+
+
+=== HMaster
+
+. 为Region server分配region
+. 负责Region server的负载均衡
+. 发现失效的Region server并重新分配其上的region
+. HDFS上的垃圾文件回收
+. 处理schema更新请求。
+
+=== HRegionServer
+
+. 维护master分配给他的region，处理对这些region的io请求
+. 负责切分正在运行过程中变得过大的region
+
+
+client访问hbase上的数据并不需要master参与（寻址访问zookeeper和regionserver，数据读写访问region server），master仅仅维护table和region的元数据信息（table的元数据信息保存在zookeeper上），负载很低。HRegionServer存取一个子表时，会创建一个HRegion对象，然后对表单每个列族创建一个Store实例，每个Store都会有一个MemStore和0个或多个StoreFile与只对应，每个StoreFile都会对应一个HFile，HFile就是实际的存储文件。因此，一个HRegion有多少个列族就有多少个Store，一个HRegionServer会有多个HRegion和一个HLog。
+
+=== HRegion
+
+table在行的方向上分隔为多个Region。Region是HBase中分布式存储和负载均衡的最小单位，既不同的region可以分别在不同的Region Server傻姑娘，但同一个Region是不会拆分到多个server上。
+
+Region按大小分隔，每个表一般是只有一个region。随着数据不断插入表，region不断增大，当region地某个列族达到一个阀值（默认256M）时会分成两个新的region。
+
+每个region由以下信息标识：
+
+. <表名，startrowkey，创建时间>
+. 由目录表（-ROOT-和.META.）记录该region的endRowkey
+
+HRegion定位：Region被分配给哪个Region Server是完全动态的，所以需要机制来定位Region具体在哪个region server
+
+HBase定位region：
+
+0.96之前（三层）
+
+. 通过zk里的文件 /hbase/rs 得到-ROOT-表单位置。 -ROOT-表只有一个region。
+. 通过-ROOT-表查找 .META 表单第一个表中相应的region的位置。其实-ROOT-表是.META.表单第一个region；.META.表中的每一个region在-ROOT-表中都是一行记录
+. 通过.META.表找到所要的用户表region的位置。用户表中的每个region在.META.表中都是一行记录
+
+0.96之后（两层）
+
+. 首先查询zk获取hbase:meta所在地regionserver，其中hbase:meta是一个比较特殊的hbase表（不能切分，只保存在一台regionserver上）
+. 然后去对应的RegionServer上查询表对应的region信息。region信息中会包含开始的rowkey，regionserver点地址等信息。
+
+
+
+
