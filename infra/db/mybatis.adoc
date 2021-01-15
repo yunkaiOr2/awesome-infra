@@ -1,0 +1,30 @@
+== Interceptor
+
+[source,java]
+....
+Executor(update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)
+ParameterHandler(getParameterObject, setParameters)
+ResultSetHandler(handleResultSets, handleOutputParameters)
+StatementHandler(prepare, parameterize, batch, update, query)
+....
+
+[plantuml, diagram-classes, png]
+....
+class SqlSession
+class Executor
+class StatementHandler
+class ParameterHandler
+class ResultSetHandler
+
+
+....
+
+解释：
+
+. Executor是Mybatis的内部执行器，它负责调用StatementHandler操作数据库，并把结果集通过ResultSetHandler进行自动映射，另外，它还处理了二级缓存的操作。
+
+. StatementHandler 是Mybatis直接和数据库执行sql脚本的对象，另外，它也实现了Mybatis的一级缓存。
+
+. ParameterHandler是Mybatis实现sql入参设置的对象。
+
+. ResultSetHandler 是Mybatis把ResultSet集合映射成POJO的接口对象。

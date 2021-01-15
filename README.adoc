@@ -12,6 +12,17 @@
 - [ ] HBase
 - [ ] MySQL
 - [ ] ClickHouse
+- [ ] Presto
+
+
+课题：
+
+. Native Java
+. 量化交易
+. 用户画像技术
+. OLAP
+
+
 
 目录结构：
 
