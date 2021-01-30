@@ -23,7 +23,6 @@
 . OLAP
 
 
-
 目录结构：
 
 [source]
@@ -31,7 +30,9 @@
 OpenArchitecture
     |---infra       基础组件
     |---OLTP        on-line transaction processing
-    |---OLAP        Online Analytical Processing
-    |---portrait    用户画像
     |---QT          量化交易
+    |---subject     课题
+    |------Portrait     用户画像
+    |------NativaJava   云原生Java
+    |------OLAP         Online Analytical Processing
 ----
