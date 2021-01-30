@@ -1,7 +1,9 @@
 
 > “在线管道处理”（OLPP，Online Pipeline Processing）
 
-== 概念模块
+== 概念模块&整体设计架构
+
+image::Real-time_data_platform.drawio.png[]
 
 === 统一数据采集平台
 

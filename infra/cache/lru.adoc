@@ -2,7 +2,9 @@
 
 > 淘汰最不经常使用的
 
-HashMap + 双向链表
+image::lru.drawio.png[]
+
+== HashMap + 双向链表
 
 . save(key, value),首先在HashMap找到Key对应的节点，如果节点存在，更新节点的值，并把
 这个几点移动队头。如果不存在，需要构造新的节点，并且尝试把节点塞到队头，如果LRU空间不足，

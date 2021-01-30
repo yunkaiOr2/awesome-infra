@@ -1,5 +1,7 @@
 
-== HBase特点
+== HBase
+
+image::hbase.drawio.png[]
 
 === HBase中的表一般有如下特点
 

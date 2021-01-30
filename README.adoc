@@ -2,6 +2,8 @@
 
 > 说明：内容来源于互联网
 
+采用Vscode + AsciiDoc + Draw.io Integration 编写
+
 == TODO
 
 - [ ] Redis
@@ -18,9 +20,10 @@
 课题：
 
 . Native Java
-. 量化交易
 . 用户画像技术
 . OLAP
+. 机器学习
+. 量化交易
 
 
 目录结构：
@@ -28,11 +31,16 @@
 [source]
 ----
 OpenArchitecture
-    |---infra       基础组件
-    |---OLTP        on-line transaction processing
-    |---QT          量化交易
-    |---subject     课题
-    |------Portrait     用户画像
-    |------NativaJava   云原生Java
-    |------OLAP         Online Analytical Processing
+    |---infra                   基础组件
+    |---data structure          数据结构
+    |---algorithm               算法
+    |---data processing         数据处理
+    |------OLTP                 On-line Transaction Processing
+    |------OLAP                 On-line Analytical Processing
+    |------DM                   数仓
+    |---QT                      量化交易
+    |---subject                 课题
+    |------Portrait             用户画像
+    |------NativaJava           云原生Java
+    
 ----
