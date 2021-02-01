@@ -1,7 +1,7 @@
 
 == HBase
 
-image::hbase.drawio.png[]
+image::hbase.dio.png[]
 
 === HBase中的表一般有如下特点
 
@@ -40,7 +40,7 @@ client访问hbase上的数据并不需要master参与（寻址访问zookeeper和
 
 === HRegion
 
-table在行的方向上分隔为多个Region。Region是HBase中分布式存储和负载均衡的最小单位，既不同的region可以分别在不同的Region Server傻姑娘，但同一个Region是不会拆分到多个server上。
+table在行的方向上分隔为多个Region。Region是HBase中分布式存储和负载均衡的最小单位，既不同的region可以分别在不同的Region Server上，但同一个Region是不会拆分到多个server上。
 
 Region按大小分隔，每个表一般是只有一个region。随着数据不断插入表，region不断增大，当region地某个列族达到一个阀值（默认256M）时会分成两个新的region。
 
