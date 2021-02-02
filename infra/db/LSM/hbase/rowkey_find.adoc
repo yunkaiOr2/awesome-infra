@@ -1,0 +1,8 @@
+== HBase如何从HFile中找到某个rowkey
+
+HBase首先根据时间戳和查询列的信息对file做一次过滤,将查询范围缩小。仍然需要扫码其余文件，StoreFile之间是无序的，而且StoreFile的rowkey范围会有交叉，所以并不会按照StoreFile顺序的查找。
+
+
+Region下单个HFile文件数越多，一次查询就会需要更多的IO操作，延迟必然会越来越大。
+
+HFile数量告警
