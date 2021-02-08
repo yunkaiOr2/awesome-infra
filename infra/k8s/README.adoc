@@ -1,4 +1,51 @@
-= k8s
+= kubernetes
 
-== 安装
+== 12-Factor App
 
+. Code Base
+
+One codebase tracked in revision control,many deploys
+
+. Dependences
+
+Explicitly declare and isolate dependences
+
+. Config
+
+Store config in environment
+
+. Backing Services
+
+Treat backing services as attached resources
+
+. Build, release, run
+
+Strictly separate build and run stages
+
+. Process
+
+Execute the app as one or more stateless processes
+
+. Port Binding
+
+Export services via port binding
+
+. Concurrency 
+
+Scale out via process model
+
+. Disposability
+
+Maximize robustness with fast startup and graceful shutdown
+
+. Dev/prod parity
+
+Keep development, staging, and production as similar as possible
+
+. Log
+
+Treat logs as event stream
+
+. Admin processes
+
+Run admin/managemetn tasks as one-off processes
