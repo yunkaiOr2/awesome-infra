@@ -1,5 +1,7 @@
 = 有哪些类型的OLAP数仓?
 
+image::cube_molap.dio.png[]
+
 == 按数据量划分
 
 |===
