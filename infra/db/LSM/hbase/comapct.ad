@@ -15,11 +15,9 @@ HBase的compact是针对HRegion的HStore进行操作的。compact操作分为maj
 . open region
 . MemStore flush
 
-单个HStore的MemStore flush之后，如果触发compact操作，则会对所属HRegion下的所有HStore分别进行compact。
+单个HStore的MemStore flush之后，如果触发compact操作，则会对所属HRegion下的所有HStore分别进行compact除此之外HregionServer.CompactionChecker负责定期10 * 1000s针对所有的HRegion的HStore检测是否需要进行compact操作。
 
-. HregionServer.CompactionChecker负责定期10 * 1000s针对所有的HRegion的HStore检测是否需要进行compact操作。
-
-    CompactionChecker判断是否需要进行compact操作的条件如下：
+CompactionChecker判断是否需要进行compact操作的条件如下：
 
 . HStore下还没有进行compact的HFile的总数 >= hbase.hstore.compaction.min(默认为3)，则需要进行compact。
 
