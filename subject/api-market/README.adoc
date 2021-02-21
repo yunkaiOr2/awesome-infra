@@ -2,7 +2,7 @@
 
 > 提供从API设计、开发、管理、门户、网关等API全生命周期的产品。
 
-image::api-market.dio.png[]
+image::api-market.dio.svg[]
 
 == 目标
 
