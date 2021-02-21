@@ -64,6 +64,9 @@ HBase定位region：
 . 首先查询zk获取hbase:meta所在地regionserver，其中hbase:meta是一个比较特殊的hbase表（不能切分，只保存在一台regionserver上）
 . 然后去对应的RegionServer上查询表对应的region信息。region信息中会包含开始的rowkey，regionserver点地址等信息。
 
+=== 读写链路的offheap
+
+
 
 
 

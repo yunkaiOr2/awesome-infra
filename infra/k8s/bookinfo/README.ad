@@ -1,0 +1,11 @@
+= bookinfo
+
+== istio
+
+image::bookinfo.dio.svg[]
+
+
+
+== 附录
+
+* https://github.com/istio/istio/tree/master/samples/bookinfo[github bookinfo]

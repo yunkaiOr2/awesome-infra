@@ -1,2 +1,13 @@
 = kubernetes
 
+== Kubernetes API约定
+
+== 关键词
+
+=== Service
+
+=== Deployment
+
+== 附录
+
+* https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md[Kubernetes API约定]

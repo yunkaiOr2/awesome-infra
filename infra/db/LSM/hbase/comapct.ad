@@ -1,0 +1,111 @@
+= HBase的compact分析
+
+对hbase来讲HFile（还包括内存上的树结构MemStore）就是LSM的多个子树。因此归并查询的子树数量越少，查询的性能就越高。
+
+== Compact的作用
+
+HFile数量过多会降低读性能。为了避免对读性能的影响，可以对这些HFile进行Compact操作，把多个HFile合并成一个HFile。compact操作需要对HBase数据进行多次重新读写，因此这个过程会产生大量的IO。可以看到compact操作的本质就是以IO操作换取后续的读性能的提高。
+
+== Compact流程
+
+HBase的compact是针对HRegion的HStore进行操作的。compact操作分为major和minor两种，major会把HStore所有的HFile都compact为一个HFile，并同时忽略标记为delete的KeyValue（被删除的KeyValue只有在compact过程中才真正被“删除”），可以想象major会产生大量的IO操作，对HBase的读写性能产生影响。minor则只会选择数个HFile文件compact为一个HFile，minor的过程一般较快，而且IO相对较低。在日常任务时间都会禁止major操作，只在空闲时段定时执行。
+
+=== Compact入口
+
+. open region
+. MemStore flush
+
+单个HStore的MemStore flush之后，如果触发compact操作，则会对所属HRegion下的所有HStore分别进行compact。
+
+. HregionServer.CompactionChecker负责定期10 * 1000s针对所有的HRegion的HStore检测是否需要进行compact操作。
+
+    CompactionChecker判断是否需要进行compact操作的条件如下：
+
+. HStore下还没有进行compact的HFile的总数 >= hbase.hstore.compaction.min(默认为3)，则需要进行compact。
+
+. 如果1不成立，则判断是否需要执行major compact。主要是查看一下是否太久没有执行compact操作。具体判断过程：
+    .. 获得compact时间间隔。hbase.hregion.majorcompaction(默认7天)为base基准时间，hbase.hregion.majorcompaction.jitter(默认5.0)为jitter，公式base+jitter-Math.round(2 * jitter * randomNum)计算出一个会每次自动抖动的数值作为major compact的时间间隔。之所以要一个自动抖动，就是避免在HRegionServer重启的时候大量的major compact出现造成大量的IO。
+
+    .. 所有HFile最老（时间戳最小）的那个HFile的时间间隔大于这个major compact的时间间隔，则执行major compact。另外HRegion只有一个HFile，并且这个HFile的所有KeyValue的时间戳都没有超过TTL，则表示无须进行major compact，会跳过这次major compact。
+
+    当1或2成立都会分别对CompactSplitThread发送compact请求，不同的是，1会异步选择需要进行compact的HFile，2则会进行同步选择。
+
+
+=== Compact请求
+
+CompactSplitThread是HRegionServer内负责专门执行minor compact、major compact、aplit、merge操作的线程池。其内部对应4个操作有不同的线程池执行对应的请求。把这些耗时较大的操作放到各自的线程池里有助于提供系统整个吞吐量，同时可以避免某个操作阻塞影响其他操作。
+对于每个compact请求，CompactionChecker需要区分出major和minor，然后分配到对应的线程池执行。条件是进行compact的文件总大小 > hbase.regionserver.thread.compaction.throttle(默认: 2 * maxFileCompacts * memstoreFlushSize = 2 * 10 * 128MB)，则为major compact，否则为minor compact。
+
+选择compact的文件操作由对应的HStore进行。CompactionChecker的2会同步选择compact文件, 这样就可以马上确定是那个线程池执行具体的compact操作。但1会异步选择compact进行的HFile时，由于不知道文件总大小，HBase会首先在minor compact的线程池进行compact文件选择操作，选择操作后如果判断为需要进行major compact，则会重新把请求发送到major的线程池进行后续的compact操作。
+
+=== HStore的compact文件选择
+
+compact文件的选择首先要判断是major还是minor，如果major，则整个HStore的所有HStore都被选中，否则就选择部分文件进行minor compact。考虑到compact操作都会耗费大量的IO，因此minor compact操作的目标就是以最少的IO代价换取最大的读性能提高。
+
+过程如下：
+
+. 删除无效文件。把超过TTL的HFile选择为compact文件。
+. 把这个些文件compact记录写入WAL，通知所有执行读请求的scanner更新，更新HStore的总文件大小等。
+. 选择compact文件。
+. 根据选择compact文件更新内部数据。
+
+compact文件过程是主要步骤：
+
+. 把当前HStore所有的HFile作为候选compact文件进行排除操作。
+
+. 排除候选HFile中比正在compact的最新文件还要老的文件。判断文件新老是比较HFile里保存的最大SequenceId（在HLog replay的过程可以判断哪些记录以及写入HFile）决定。SequenceId是HRegion把插入的KeyValue记录写入HLog时作为key一部分的单调递增ID，因此SequenceId越大，则记录越新，也就是HFile越新。
+
+. 排除候选HFile中超过hbase.hstore.compaction.max.size(默认Long最大值)以及非Reference文件。如果不是forceMajor则跳过这步。Reference文件是split region产生的临时文件，只是简单的引用文件，一般必须在compact过程中删除。
+
+. 判断是否major compact。满足用户指定的force major，或者太长时间没有进行compact（CompactionCehcker的判断条件2）且候选文件数小于hbase.hstore.compaction.max(默认10)，或者有Reference文件，满足上面三个条件之一则是major compact。
+
+. 判断是否minor compact
+.. 排除在metadata里设置不进行minor compact的HFile（bulkLoad的时候设置）
+.. applyCompactionPolicy
+.. 候选文件数小于hbase.hstore.compaction.min(默认3)则排除全部的候选文件
+
+. 排除候选文件数里超过hbase.hstore.compaction.max(默认10)的部分，如果是major compact则跳过这步，注意从最新的HFile开始进行排除，也就是如果有12个候选文件，这排除掉最后两个最新的HFile。
+
+compact的选择过程中，主要是判断major和minor，然后在配置的最大最小相关限制下进行选择。整个步骤的重点在applyCompactionPolicy，用户可以实现自己的选择策略。HBase主要有两个策略。
+RatioBasedCompactionPolicy和ExploringCompactionPolicy。我们首先假设一个现象：当写请求非常多，导致不断生成HFile，但compact的速度远远跟不上HFile生成的速度，这样就会是HFile的数量会越来越多，导致读性能急剧下降。为了避免这种情况，在HFile数量过多的时候会限制写请求的速度：在每次执行MemStore flush的操作前，如果HStore的HFile数超过hbase.hstore.blockingStoreFiles（默认7），则会阻塞flush操作hbase.hstore.blockingWaitTime时间，在这段时间内，如果compact操作使得HStore文件数下降到回这个值，则停止阻塞。另外阻塞超过时间后，也会恢复执行flush操作。这样做就可以有效地控制大量写请求的速度，但同时这也是影响写请求速度的主要原因之一。
+
+两者实现如下:
+
+* RatioBasedCompactionPolicy
+
+    从最旧文件。开始遍历到最新候选文件，找到小于[hbase.hstore.compaction.min.size(默认为memstore的flush大小，128M)和compact文件总大小 * ratio的最大值]的符合条件文件，如果发现不符合则马上停止搜索。ratio是一个可变的比例，可以通过设置高峰期的时间来改变这个比例，在高峰期时ratio为1.2，非高峰期为5。也就是非高峰期允许compact更大的文件（非高峰期可以耗费更大IO）。目的是尽可能找到小文件进行minor compact。如果判断这个compact操作后文件数任然过多会阻塞flush操作，则只是简单选择从最老的文件起，候选文件数减去hbase.hstore.compaction.min（默认3）个文件。
+
+* ExploringCompactionPolicy。
+
+    从最旧文件开始遍历所有的候选文件，找出符合[compact文件大小 小于hbase.hstore.compaction.max.size (默认Long最大值)且所有文件的大小都不会超过其他文件大小 * ratio] 并且效率最高[compact文件数最多或compact大小最小]。ratio是高峰比例。注意，由于存在限制，因此可能候选文件被排除到0个，这时如果判断这个compact操作后文件数仍然过多会阻塞flush操作，则会选择hbase.hstore.compaction.min(默认3)个文件起，符合最大（Long最大值）最小compact大小（128MB）的总大小最小的一个子集合。
+    
+    可见ExploringCompactionPolicy是基于所有候选文件考虑，而RatioBasedCompactionPolicy则是遍历找到就停止。ExploringCompactionPolicy是新版本策略，就版本的RatioBasedCompactionPolicy当时只考虑到最大的文件往往是最老，但对于bulk-loaded的文件等某些情况则会破坏这个规则，RatioBasedCompactionPolicy的算法就不是最优的压缩策略。
+
+完成compact文件选择后，HStore保存这次compact的结果，并返回CompactSplitThread。
+
+=== compact的执行
+
+CompactSplitThread 接下来会要求HRegion进行compact请求，HRegion会增加compact的计数值表明正在执行的compact操作，这样可以防止compact过程中，HRegion被关闭，然后HRegion调用具体HStore的compactg方法执行真正的compact操作。
+
+HStore的compact操作步骤，主要就是将这些HFile写成一个HFile:
+
+. 对所有文件创建对应的scanner,Reference有特殊的scanner。scanner的层次可以考虑之前的读请求，最终得到的是一个StoreScanner对象，另外如果是major compact, 则会指定在scanner的时候忽略Delete的KeyValue。
+
+. 创建一个临时文件，循环调用scanner的next方法，把获得的有序的KeyValue写入临时文件中然后把这些KeyValue最大的SequenceId写入metadata里。
+
+. 把写入临时文件的compact文件移动到HStore对应的存储目录
+
+. 把compact的结果写入WAL，RS宕机时就可以依据WAL执行删除旧storeFile
+
+. 用新的compact文件更新HStore内部的数据
+
+. 通知执行读请求中的scanners更新读的HFile，删除旧文件（实际上将其归档），重新计算所有HFile总大小
+
+可以看到在整个compact操作里，只有最后完成compact过程才会对读请求有影响。
+完成了HStore的compact操作后，HRegion就会减去之前compact的计算值。返回到CompactSplitThread流程，如果hbase.hstore.blockingStoreFiles(默认7)减去当前的HStore的HFile数。如果<0则表示HRegion将会阻塞后续的memstore flush操作，处于stuck状态则继续调用requestSytemCompaction,否则执行requestSplit查看是否需要split>。
+
+自此，就完成了HStore的compact操作。
+
+== 附录
+
+* http://www.mamicode.com/info-detail-951200.html[HBase的compact分析]
