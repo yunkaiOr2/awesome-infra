@@ -5,4 +5,4 @@
 
 
 == 附录
-* https://docs.google.com/spreadsheets/d/1DnsHtdHbxjvHmxvlu7VhzWcWgLAn_Mc5L1WlhLDA__k/edit#gid=0[Kubernetes Ingress controllers comparison]
+* https://docs.google.com/spreadsheets/d/1DnsHtdHbxjvHmxvlu7VhzWcWgLAn_Mc5L1WlhLDA__k/edit#gid=0[Kubernetes Ingress controllers comparison] 被墙可以访问 https://www.kdocs.cn/p/105333778394?from=docs&source=docsWeb[wps]
