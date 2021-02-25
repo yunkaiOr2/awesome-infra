@@ -1,0 +1,11 @@
+== Pulsar
+
+image::pulsar.dio.svg[]
+
+Plusar和其他消息系统的最根本区别在于其采用计算和存储分离的分层架构。Pulsar集群由两层组成：无状态服务层，它由一组接受和传递消息的broker组成；分布式存储层，它由一组名为bookies的Apache Bookeeper存储节点组成，具备高可用、强一致、低延时的特点。
+
+和Kafka异样，Pulsar也是基于主题分区（Topic partition）的逻辑概念进行主题数据的存储。不同的是，Kafka的物理存储也是以分区为单位，每个partition必须作为一个整体（一个目录）被存储在一个broker上，而Pulsar的每个主题分区本质上都是存储在Bookeeper上的分布式日志，每个日志又被分成分段（Segment）。每个Segment作为BookKeeper上的一个Ledger，均匀分布并存储在多个bookie中。存储分层的架构和以Segment为中心分片存储是Pulsar的两个关键设计理念。以此为基础为Pulsar提供了很多重要的优势：无限制的主题分区、存储及时扩展，无需数据迁移、无缝broker故障恢复、无缝集群扩展、无缝存储（Bookie）故障恢复和独立的可扩展性。
+
+== 附录
+
+https://www.infoq.cn/article/pyka_sbkgdhvlz3wumby[如何基于Apach Pulsar和Spark进行批流一体的弹性数据处理？]

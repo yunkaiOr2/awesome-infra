@@ -3,7 +3,7 @@
 
 == 概念模块&整体设计架构
 
-image::Real-time_data_platform.drawio.png[]
+image::real-time_data_platform.dio.svg[]
 
 === 统一数据采集平台
 

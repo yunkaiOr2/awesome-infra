@@ -1,8 +1,0 @@
-== Pulsar
-
-image::pulsar.dio.svg[]
-
-
-== 附录
-
-https://www.infoq.cn/article/pyka_sbkgdhvlz3wumby[如何基于Apach Pulsar和Spark进行批流一体的弹性数据处理？]
