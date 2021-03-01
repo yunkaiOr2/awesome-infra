@@ -1,0 +1,24 @@
+== Hbase读请求分析
+
+=== HBase如何从HFile中找到某个rowkey？
+
+HBase首先根据时间戳和查询列的信息对file做一次过滤,将查询范围缩小。仍然需要扫码其余文件，StoreFile之间是无序的，而且StoreFile的rowkey范围会有交叉，所以并不会按照StoreFile顺序的查找。
+
+
+Region下单个HFile文件数越多，一次查询就会需要更多的IO操作，延迟必然会越来越大。
+
+HFile数量告警
+
+=== 读写链路的offheap
+
+写链路offheap：
+
+. 在RPC层直接把网络流上的KeyValue读入offheap的bytebuffer中
+. 使用offheap的MSLAB pool
+. 使用支持offheap的Protobuf版本(3.0+)
+
+读链路的offheap：
+
+. 对BucketCache引用计数，避免读取时的拷贝
+. 使用ByteBuffer做为服务端KeyValue的实现，从而使KeyValue可以存储在offheap的内存中
+. 对BucketCache进行了一些列性能优化

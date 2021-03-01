@@ -1,16 +1,16 @@
-= HBase的compact分析
+== HBase的compact分析
 
 对hbase来讲HFile（还包括内存上的树结构MemStore）就是LSM的多个子树。因此归并查询的子树数量越少，查询的性能就越高。
 
-== Compact的作用
+=== Compact的作用
 
 HFile数量过多会降低读性能。为了避免对读性能的影响，可以对这些HFile进行Compact操作，把多个HFile合并成一个HFile。compact操作需要对HBase数据进行多次重新读写，因此这个过程会产生大量的IO。可以看到compact操作的本质就是以IO操作换取后续的读性能的提高。
 
-== Compact流程
+=== Compact流程
 
 HBase的compact是针对HRegion的HStore进行操作的。compact操作分为major和minor两种，major会把HStore所有的HFile都compact为一个HFile，并同时忽略标记为delete的KeyValue（被删除的KeyValue只有在compact过程中才真正被“删除”），可以想象major会产生大量的IO操作，对HBase的读写性能产生影响。minor则只会选择数个HFile文件compact为一个HFile，minor的过程一般较快，而且IO相对较低。在日常任务时间都会禁止major操作，只在空闲时段定时执行。
 
-=== Compact入口
+==== Compact入口
 
 . open region
 . MemStore flush
@@ -29,14 +29,14 @@ CompactionChecker判断是否需要进行compact操作的条件如下：
     当1或2成立都会分别对CompactSplitThread发送compact请求，不同的是，1会异步选择需要进行compact的HFile，2则会进行同步选择。
 
 
-=== Compact请求
+==== Compact请求
 
 CompactSplitThread是HRegionServer内负责专门执行minor compact、major compact、aplit、merge操作的线程池。其内部对应4个操作有不同的线程池执行对应的请求。把这些耗时较大的操作放到各自的线程池里有助于提供系统整个吞吐量，同时可以避免某个操作阻塞影响其他操作。
 对于每个compact请求，CompactionChecker需要区分出major和minor，然后分配到对应的线程池执行。条件是进行compact的文件总大小 > hbase.regionserver.thread.compaction.throttle(默认: 2 * maxFileCompacts * memstoreFlushSize = 2 * 10 * 128MB)，则为major compact，否则为minor compact。
 
 选择compact的文件操作由对应的HStore进行。CompactionChecker的2会同步选择compact文件, 这样就可以马上确定是那个线程池执行具体的compact操作。但1会异步选择compact进行的HFile时，由于不知道文件总大小，HBase会首先在minor compact的线程池进行compact文件选择操作，选择操作后如果判断为需要进行major compact，则会重新把请求发送到major的线程池进行后续的compact操作。
 
-=== HStore的compact文件选择
+==== HStore的compact文件选择
 
 compact文件的选择首先要判断是major还是minor，如果major，则整个HStore的所有HStore都被选中，否则就选择部分文件进行minor compact。考虑到compact操作都会耗费大量的IO，因此minor compact操作的目标就是以最少的IO代价换取最大的读性能提高。
 
@@ -81,7 +81,7 @@ RatioBasedCompactionPolicy和ExploringCompactionPolicy。我们首先假设一�
 
 完成compact文件选择后，HStore保存这次compact的结果，并返回CompactSplitThread。
 
-=== compact的执行
+==== compact的执行
 
 CompactSplitThread 接下来会要求HRegion进行compact请求，HRegion会增加compact的计数值表明正在执行的compact操作，这样可以防止compact过程中，HRegion被关闭，然后HRegion调用具体HStore的compactg方法执行真正的compact操作。
 
@@ -104,6 +104,6 @@ HStore的compact操作步骤，主要就是将这些HFile写成一个HFile:
 
 自此，就完成了HStore的compact操作。
 
-== 附录
+==== 附录
 
 * http://www.mamicode.com/info-detail-951200.html[HBase的compact分析]

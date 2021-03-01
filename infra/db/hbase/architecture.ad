@@ -1,14 +1,4 @@
-
-== HBase
-
-image::hbase.dio.png[]
-
-=== HBase中的表一般有如下特点
-
-. 大： 一个表可以有上亿行，上百万列。
-. 面向列： 面向列表（簇）的存储和权限控制，列（簇）独立检索。
-. 稀疏： 对于为空（NULL）的列，并不占用存储空间，因此，表可以设计的非常稀疏。
-
+== HBase主要角色
 
 === HBase访问接口
 
@@ -20,7 +10,6 @@ HBase支持很多种访问，访问HBase的常见接口如下。
 . REST Gateway, 支持REST风格的Http API访问HBase，解除了语言限制。
 . Pig，可以使用Pig Latin流式编程语言来操作HBase中的数据，和Hive类似，本质最终也是编译成MapReduce Job来处理HBase表数据，适合做数据统计
 . Hive, 当前Hive的Release版本尚没有加入对HBase的支持，但在下一个版本Hive(0.7.0) 中将会支持HBase，可以使用类似SQL语言来访问HBase。
-
 
 === HMaster
 
@@ -63,10 +52,3 @@ HBase定位region：
 
 . 首先查询zk获取hbase:meta所在地regionserver，其中hbase:meta是一个比较特殊的hbase表（不能切分，只保存在一台regionserver上）
 . 然后去对应的RegionServer上查询表对应的region信息。region信息中会包含开始的rowkey，regionserver点地址等信息。
-
-=== 读写链路的offheap
-
-
-
-
-

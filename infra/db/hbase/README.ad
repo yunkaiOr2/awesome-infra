@@ -1,0 +1,22 @@
+
+= HBase
+
+image::hbase.dio.svg[]
+
+== 为什么是HBase？
+
+include::issue.ad[]
+
+== 功能描述
+
+=== HBase中的表一般有如下特点
+
+. 大： 一个表可以有上亿行，上百万列。
+. 面向列： 面向列表（簇）的存储和权限控制，列（簇）独立检索。
+. 稀疏： 对于为空（NULL）的列，并不占用存储空间，因此，表可以设计的非常稀疏。
+
+include::architecture.ad[]
+
+include::read.ad[]
+
+include::comapct.ad[]
