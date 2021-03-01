@@ -1,9 +1,10 @@
-=== 课题：
 
-. Api-Market
-. APM 应用性能管理
-. Native Java
-. Portrait(用户画像技术)
-. Data-Processing(超大规模数据处理)
-. OLAP
-. QT-机器学习
+= 课题
+
+include::catalog.ad[]
+
+== 目标
+
+. 采用包括但不限于iceworks等工具完成产品原型
+. 后端语言采用但不限于:Java ,Python, Golang, Rust，Scala，JS
+. 采用Minikube帮助快速搭建环境

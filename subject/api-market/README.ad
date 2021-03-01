@@ -43,6 +43,15 @@ Publish APIs and reference docs, and on-board developers
 .. 流量copy，我们支持对线上的原始请求根据规则copy一份，写入到mq或者其他的upstream，来做线上夸机房验证和压力测试。
 .. 请求日志采样，我们对所有的失败的请求都会落盘，提供业务方排查问题支持，也支持业务方根据规则进行个性化采样，我们采样了整个生命周期的数据，包含请求和响应相关的所有数据。
 
+. producers
+
+.. 产品 * 1 -> 接口 * n -> 渠道 * n
+.. ConfigMap
+.. API
+
+. portals
+
+.. 
 == 附录
 
 * https://github.com/spaceuptech/space-cloud[Open source Firebase + Heroku to develop, scale and secure serverless apps on Kubernetes]
