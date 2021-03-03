@@ -1,0 +1,7 @@
+
+
+== 附录
+
+* https://openjdk.java.net/projects/portola/[最小的Java运行环境镜像]
+* https://www.graalvm.org/[GraalVM]
+* https://github.com/google/dagger[编译前静态注入，提升启动速度]
