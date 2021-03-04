@@ -1,5 +1,9 @@
 == algorithm
 
+> 采用vscode插件刷LeetCode，需要安装并且登录才能运行leetcode下的代码
+
+
+
 == 附录
 
 * https://algorithm-visualizer.org/backtracking/hamiltonean-cycles[算法可视化]
