@@ -4,10 +4,12 @@
 
 采用Vscode + AsciiDoc + Draw.io Integration 编写
 
-include::./infra/catalog.ad[]
+也可以通过 Idea + AsciiDoc + Diagrams.​net Integration 编写
 
-include::./subject/catalog.ad[]
+include::./infra/catalog.adoc[]
 
-include::./Data-Structure/catalog.ad[]
+include::./subject/catalog.adoc[]
 
-include::./algorithm/catalog.ad[]
+include::./Data-Structure/catalog.adoc[]
+
+include::./algorithm/catalog.adoc[]
