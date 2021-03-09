@@ -1,3 +1,4 @@
+import java.util.BitSet;
 import java.util.Map;
 
 /*
@@ -9,21 +10,30 @@ import java.util.Map;
 // @lc code=start
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        if (s.length() == 0) {
-            return 0;
+        if (s.length() <= 1) {
+            return s.length();
         }
-        int max = 0;
+        BitSet bs = new BitSet(256);
+        int result = 0;
         int left = 0;
-        Map<Character, Integer> charIndexMap = new HashMap<Character, Integer>();
-        for (int i = 0; i < s.length(); i++) {
-            if (charIndexMap.containsKey(s.charAt(i))) {
-                left = Math.max(left, charIndexMap.get(s.charAt(i)) + 1);
+        int right = 0;
+
+        while (left < s.length()) {
+            if (right < s.length() && !bs.get(s.charAt(right))) {
+                bs.set(s.charAt(right));
+                right++;
+            } else {
+                bs.clear(s.charAt(left));
+                left++;
             }
-            charIndexMap.put(s.charAt(i), i);
-            max = Math.max(max, i - left + 1);
+            result = Math.max(result, right - left);
+
+            if (left + result > s.length()) {
+                break;
+            }
         }
 
-        return max;
+        return result;
     }
 }
 // @lc code=end

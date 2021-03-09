@@ -62,3 +62,109 @@
 . 表示图的最直接方法
 . 后者更省空间，并且在一定程度上更好用，比如Bellman-Ford算法
 ps 数组、链表太基础不在考量之列
+
+
+|===
+| 数据结构 | 变种
+
+| 顺序线性表：向量Vector
+|
+
+| 单链表
+Singly Linked List
+| 
+
+. 双向链表Double Linked Lists
+. 静态链表Static List
+. 对称矩阵Symmetric Matrix
+. 稀疏矩阵 Sparse Matrix
+
+| 哈希表Hash Table
+| 1. 散列函数Hash Function
+
+2. 解决碰撞/填充因子Collision Resolution
+
+| 栈和队列Stack&Queue
+| 1. 广义表Generalized List/GList
+
+2. 双端队列Deque
+
+| 队列Queue
+| 1. 链表实现Linked List Implementation
+
+2. 循环数组实现ArrayQueue
+
+3. 双端队列Deque
+
+4. 优先队列Priority Queue
+
+| 字符串String
+| 1. KMP算法
+
+2. 有限状态自动机
+
+3. 模式匹配有限状态自动机
+
+4. BM 模式匹配算法
+
+5. BM-KMP算法
+
+6. BF算法
+
+| 树Tree
+| 1. 二叉树Binary Tree
+
+2. 并查集Union-Find
+
+3. Huffman 树
+
+| 数组实现的堆Heap
+| 1. 极大堆和极小堆Max Heap and Min Heap
+
+2. 极大堆小堆
+
+3. 双端堆Deap
+
+4. d叉堆
+
+| 树实现的堆Heap
+| 1. 左堆Leftist Tree/Leftist Heap
+
+2. 扁堆
+
+3. 二项式堆
+
+4. 斐波那契堆Fibonacco Heap
+
+5. 配对堆Pairing Heap
+
+| 查找Search
+| 1. 哈希表Hash
+
+2. 跳跃表Skip List
+
+3. 排序二叉树Binary Sort Tree
+
+4. AVL树
+
+5. B树/ B+树 / B*树
+
+6. AA树
+
+7. 红黑树Read Black Tree
+
+8. 排序二叉树Binary Heap
+
+9. Splay 树
+
+10. 双链树Double Chained Tree
+
+11. Trie树
+
+12. R树
+
+|===
+
+== 附录
+
+* https://books.halfrost.com/leetcode/ChapterOne/Data_Structure/

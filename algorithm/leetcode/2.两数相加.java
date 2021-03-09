@@ -15,26 +15,26 @@ class Solution {
         ListNode head = new ListNode();
         ListNode next = head;
         boolean carry = false;
-        int sum = 0;
+        int towNumbersSum = 0;
 
         while (l1 != null || l2 != null) {
-            sum = 0;
+            towNumbersSum = 0;
             if (l1 != null) {
-                sum += l1.val;
+                towNumbersSum += l1.val;
                 l1 = l1.next;
             }
 
             if (l2 != null) {
-                sum += l2.val;
+                towNumbersSum += l2.val;
                 l2 = l2.next;
             }
 
             if (carry) {
-                ++sum;
+                ++towNumbersSum;
             }
 
-            next.next = new ListNode(sum % 10);
-            carry = sum >= 10;
+            next.next = new ListNode(towNumbersSum % 10);
+            carry = towNumbersSum >= 10;
             next = next.next;
         }
 
