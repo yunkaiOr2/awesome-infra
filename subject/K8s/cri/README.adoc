@@ -1,0 +1,12 @@
+== CRI(Container Runtime Interface)
+
+统一容器运行时接口，凡是支持CRI的容器运行时，都可以作为K8s的底层容器运行时。
+
+image::cri.dio.svg[]
+
+如果使用Docker作为K8s容器运行时代话，kubelete需要先要通过dockershim去调用Docker，再通过Docker去调用containerd。
+
+如果使用containerd作为K8s容器运行时，由于containerd内置了CRI插件，kubelet可以直接调用containerd。
+
+== 附录
+
