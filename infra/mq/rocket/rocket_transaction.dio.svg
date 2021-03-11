@@ -1,0 +1,48 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="171px" height="251px" viewBox="-0.5 -0.5 171 251" content="&lt;mxfile host=&quot;6b0edfbe-072d-471f-99ff-662b9f200f44&quot; modified=&quot;2021-03-11T04:31:25.069Z&quot; agent=&quot;5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.54.1 Chrome/87.0.4280.141 Electron/11.3.0 Safari/537.36&quot; version=&quot;14.2.4&quot; etag=&quot;5EnKaiqU9fJFMPaxV6Y2&quot; type=&quot;embed&quot;&gt;&lt;diagram id=&quot;qrH0TZ7CFIO8IW96sF9G&quot; name=&quot;Page-1&quot;&gt;xZRNc4MgEEB/DXeRYMkxSU176SmHnqlQZQbFQawmv76g+FXNTDuTmZ5c3i4Ij1WATnn7ommZvSnGJQgD1gL0DMIQQhjZhyPXnuBd2INUC+aLJnARN+5h4GktGK8WhUYpaUS5hIkqCp6YBaNaq2ZZ9qnk8q0lTfkKXBIq1/RdMJP1lOBg4q9cpNnwZhj4TE6HYg+qjDLVzBCKATpppUwf5e2JSydv8NLPO9/JjhvTvDC/meC9f1FZ+7P5fZnrcFit6oJxVw8BOjaZMPxS0sRlG3u9lmUmlz7tl+Pa8PbuluB4UNshXOXc6KstGSYMbnxzwL0fN5Nq+ORZNtMcDv6pv950XHsyYAMvYVsIWguJI3CMACEuIBAcziDGgJzBHoJ4D0jgYEy6AK/sWQ9mqYhKkRY2TqwPri1wtoRtroNP5IIxN/2oeSVu9KNbKrDjUonCdGfDR4Cf3Vq1UVX/eTzKfoQX9sdvbmafbMl/gPvdhvvR9OoS/r1Pdz9M4Y0+DTdUob+rssPpn9DlZn9WFH8D&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="0" y="0" width="170" height="250" rx="25.5" ry="25.5" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="45" y="20" width="80" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 30px; margin-left: 85px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">
+                                消息发送者
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="85" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    消息发送者
+                </text>
+            </switch>
+        </g>
+        <rect x="25" y="60" width="120" height="30" rx="4.5" ry="4.5" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 75px; margin-left: 26px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                发消息
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="85" y="79" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    发消息
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>
