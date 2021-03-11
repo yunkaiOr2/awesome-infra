@@ -15,8 +15,8 @@ include::issue.ad[]
 . 面向列： 面向列表（簇）的存储和权限控制，列（簇）独立检索。
 . 稀疏： 对于为空（NULL）的列，并不占用存储空间，因此，表可以设计的非常稀疏。
 
-include::architecture.ad[]
+include::architecture.adoc[]
 
-include::read.ad[]
+include::read.adoc[]
 
-include::comapct.ad[]
+include::comapct.adoc[]
