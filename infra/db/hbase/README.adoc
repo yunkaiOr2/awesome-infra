@@ -5,7 +5,7 @@ image::hbase.dio.svg[]
 
 == 为什么是HBase？
 
-include::issue.ad[]
+include::issue.adoc[]
 
 == 功能描述
 
