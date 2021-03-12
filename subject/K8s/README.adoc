@@ -61,6 +61,13 @@ Ingress 是对集群中服务的外部访问进行管理的 API 对象，典型�
 Ingress 可以提供负载均衡、SSL 终结和基于名称的虚拟托管。
 
 
+== 常用命令
+
+[source=shell]
+....
+# 查看pod使用的镜像
+kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}"
+....
 
 
 == 附录
