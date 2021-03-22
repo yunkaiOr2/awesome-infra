@@ -1,0 +1,6 @@
+
+image::jvm.dio.svg[]
+
+== GC
+
+image::g1.dio.svg[]

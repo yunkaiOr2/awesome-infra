@@ -1,5 +1,77 @@
 == SLI
 
+SLI是经过仔细定义的测量指标，它根据不同的系统特点确定要测量什么，SLI确实是一个非常复杂的过程。
+
+=== SLI的确定需要回答如下几个问题：
+
+* 要测量的指标是什么？
+
+* 测量时的系统状态？
+
+* 如何汇总处理测量的指标？
+
+* 测量指标能否准确描述服务质量？
+
+* 测量指标的可靠度(trustworthy)？
+
+=== 常见的测量指标有如下几个方面：
+==== 性能
+
+* 响应时间（latency）
+* 吞吐量（throughput）
+* 请求量（qps）
+* 时效性（freshness）
+
+==== 可用性
+
+* 运行时间（uptime）
+* 故障时间/频率
+
+==== 可靠性&质量
+
+* 准确性（accuracy）
+* 正确性（correctness）
+* 完整性（completeness）
+* 覆盖率（coverage）
+* 相关性（relevance）
+
+==== 内部指标
+
+* 队列长度（queue length）
+* 内存占用（RAM usage）
+
+==== 因素人
+
+* 响应时间（time to response）
+* 修复时间（time to fix）
+* 修复率（fraction fixed）
+
+举例说明：
+
+hotmail的downtime SLI 错误率(error rate)计算的是服务返回给用户的error总数，如果错误率大于X%，就算是服务down了，开始计算downtime，如果错误率持续超过Y分钟，这个downtime就会被计算在内
+间断性的小于Y分钟的downtime是不被计算在内的。
+
 == SLO
 
+> 服务等级目标
+
+第一次设置SLO可以遵循以下原则：
+
+* 测量系统当前状态
+** 设置预期（expectations）而不是保证（guarantees）
+** 初期SLO不适合作为服务质量的强化工具
+* 改进SLO
+** 设置更低的响应时间、更改的吞吐量等
+* 保持一定的安全缓冲
+** 内部使用的SLO要高于对外宣称的SLO
+* 不要超额完成
+** 定期的downtime来是SLO不超额完成
+
+
 == SLA
+
+> 服务等级协议
+
+== 附录
+
+* https://www.infoq.cn/article/VuCOims462XbPQwrcftl[蚂蚁集团如何在大规模 Kubernetes 集群上实现高 SLO？]
