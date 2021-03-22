@@ -1,7 +1,7 @@
 
 = 课题
 
-include::catalog.ad[]
+include::catalog.adoc[]
 
 == 目标
 

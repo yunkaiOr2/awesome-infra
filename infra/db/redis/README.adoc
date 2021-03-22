@@ -19,6 +19,20 @@ image::redis_eventloop.dio.svg[]
 
 image::redis_reactor.dio.svg[]
 
+== 数据结构
+
+=== zset
+
+> sorted set
+
+=== string
+
+=== list
+
+=== hash
+
+=== set
+
 
 == 附录
 
