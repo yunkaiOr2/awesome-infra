@@ -1,0 +1,29 @@
+
+
+= istio
+
+* Connect
+
+Intelligently control the flow of traffic and API calls between services,conduct a range of tests, and upgrade gradually with read/black deployments
+
+* Secure
+
+Automatically secure your services through managed authentication,authorization, and encryption of communication between services
+
+* Control
+
+Apply policies and ensure that they`re enforced,and that resources are fairly distributed among consumers.
+
+* Observe
+
+See what`s happening with rich automatic tracing, monitoring,and logging of all your services.
+
+== bookinfo
+
+image::bookinfo.dio.svg[]
+
+
+
+== 附录
+
+* https://github.com/istio/istio/tree/master/samples/bookinfo[github bookinfo]

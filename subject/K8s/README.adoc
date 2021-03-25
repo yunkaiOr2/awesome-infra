@@ -8,6 +8,12 @@ include::keywords.adoc[]
 ....
 # 查看pod使用的镜像
 kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}"
+
+# 
+#
+#
+# 
+kubectl rollout status deployment/kiali -n istio-system
 ....
 
 
