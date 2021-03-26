@@ -2,7 +2,7 @@
 
 > 淘汰最不经常使用的
 
-image::lru.drawio.png[]
+image::lru.dio.svg[]
 
 == HashMap + 双向链表
 
@@ -91,5 +91,43 @@ else if (server.maxmemory_policy == REDIS_MAXMEMORY_ALLKEYS_LRU ||
 
 Redis会基于server.maxmemroy_samples 配置选取固定数目的key，然后比较它们的lru访问时间，然后淘汰最近最久没有访问的key，maxmemory_samples的值越大，Redis的近似LRU算法就约接近于严格LRU算法，但是相应消耗也变高，对性能有一定影响，样本值默认为5.
 
-== 缓存污染（mysql）
+== 缓存策略
+
+|===
+|缓存淘汰策略|解决缓存污染|说明
+
+| noeviction 策略
+| 不能
+| 不会淘汰数据
+
+| volatile-ttl 策略
+| 能
+| 给数据设置合理的过期时间。当缓存写满时，会淘汰剩余存活时间最短的数据，避免滞留在缓存中，造成污染。
+
+| volatile-random策略
+| 不能
+| 随机选择数据，无法把不再访问的数据筛选出来，会造成缓存污染。
+
+| volatile-lru策略
+| 不能
+| LRU策略只考虑数据的访问时效，对只访问一次的数据，不能很快筛选出来。 
+
+| volatile-lfu策略
+| 能
+| LFU策略在LRU策略基础上进行了优化，筛选数据时优先筛选并淘汰访问次数少的数据。
+
+| allkeys-random策略
+| 不能
+| 随机选择数据，无法把不再访问的数据筛选出来，会造成缓存污染。
+
+| allkeys-lru策略
+| 不能
+| LRU策略只考虑数据的访问时效，对只访问一次的数据，不能很快筛选出来。
+
+| allkeys-lfu策略
+| 能
+| LFU策略在LRU策略基础上进行了优化，筛选数据时优先筛选并淘汰访问次数少的数据。
+|===
+
+== 缓存污染
 

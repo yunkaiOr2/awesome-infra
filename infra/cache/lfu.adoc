@@ -1,0 +1,5 @@
+== LFU(Least Frequently Used)
+
+== LFU-Aging算法
+
+== Window-LFU算法

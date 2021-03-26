@@ -42,7 +42,7 @@
 |无脏读和不可重复读，允许幻读
 |Mysql Inndb
 
-|Serializable（序列化）
+|Serializable（串行化）
 |3
 |都可以避免，执行效率慢，慎用
 |
