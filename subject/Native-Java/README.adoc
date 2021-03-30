@@ -1,4 +1,10 @@
+== Fabric8
 
+> Fabric8提供了一个完全集成的开源微服务平台，可在任何的Kubernetes和OpenShift环境中开箱即用。
+
+== Feign
+
+> 基于注解的HTTP调用框架
 
 == 附录
 
@@ -6,3 +12,4 @@
 * https://www.graalvm.org/[GraalVM]
 * https://github.com/google/dagger[编译前静态注入，提升启动速度]
 * https://www.jfokus.se/jfokus20-preso/Getting-the-best-out-of-Spring-Cloud--Kubernetes-and-Istio.pdf[Spring-Cloud--Kubernetes-and-Istio]
+* https://github.com/spring-cloud/spring-cloud-kubernetes[spring-cloud-kubernetes]

@@ -1,0 +1,23 @@
+== 越权访问
+
+=== 垂直越权
+
+垂直越权是一种权限非法提升的行为
+
+=== 水平越权
+
+水平越权主要是因为服务端没有判断数据的归属所造成的越权行为。
+
+== RBAC（Role Based Access Control）
+
+> 基于角色的访问控制
+
+
+== ABAC(Attribute Based Access Control)
+
+> 基于属性的权限访问控制
+
+* subject 指的是系统的使用者，可以是用户（user）,也可以是其他非服务的个体（non-person entity, NPE）
+* object 泛指被访问的数据
+* operation/action 指操作行为，一般对应系统中的API
+* policy访问策略，它规定了一个用户在什么条件下可以对哪些数据做什么，是ABAC系统核心实体之一
