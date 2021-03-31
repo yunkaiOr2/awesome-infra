@@ -6,3 +6,4 @@
 * https://www.graalvm.org/[GraalVM]
 * https://github.com/google/dagger[编译前静态注入，提升启动速度]
 * https://www.jfokus.se/jfokus20-preso/Getting-the-best-out-of-Spring-Cloud--Kubernetes-and-Istio.pdf[Spring-Cloud--Kubernetes-and-Istio]
+* https://github.com/spring-projects-experimental/spring-native[Spring Native]

@@ -2,14 +2,14 @@
 
 > 淘汰最不经常使用的
 
-image::lru.dio.svg[]
-
 == HashMap + 双向链表
 
 . save(key, value),首先在HashMap找到Key对应的节点，如果节点存在，更新节点的值，并把
 这个几点移动队头。如果不存在，需要构造新的节点，并且尝试把节点塞到队头，如果LRU空间不足，
 则通过tail淘汰掉队尾的节点，同时在HashMap中移除Key。
 . get(key),通过HashMap找到LRU链表节点，因为根据LRU原理，这个节点是最新访问的，所以要把节点插入队头，然后返回缓存的值。
+
+image::lru.dio.svg[]
 
 == 近似lru（redis）
 

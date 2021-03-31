@@ -18,6 +18,12 @@ Apply policies and ensure that they`re enforced,and that resources are fairly di
 
 See what`s happening with rich automatic tracing, monitoring,and logging of all your services.
 
+
+== Envoy xDS
+
+> Envoy 通过查询文件或者管理服务器来动态发现资源。概括地讲，对应的发现服务及其相应的API被称作xDS.
+
+
 == bookinfo
 
 image::bookinfo.dio.svg[]
