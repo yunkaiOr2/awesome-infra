@@ -1,6 +1,8 @@
 
+== java 8 内存模型
+
 image::jvm.dio.svg[]
 
 == GC
 
-image::g1.dio.svg[]
+include::gc.adoc[]

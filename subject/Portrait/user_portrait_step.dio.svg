@@ -1,0 +1,566 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1031px" height="681px" viewBox="-0.5 -0.5 1031 681" content="&lt;mxfile&gt;&lt;diagram id=&quot;I7hFN38IFASUYkE-hjAJ&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="0" y="0" width="190" height="270" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="10" y="20" width="170" height="240" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 162px; height: 1px; padding-top: 10px; margin-left: 15px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 250px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                <h1>
+                                    <font color="#000000">
+                                        用户画像基础
+                                    </font>
+                                </h1>
+                                <p>
+                                    <font color="#000000">
+                                        用户画像是什么
+                                    </font>
+                                </p>
+                                <p></p>
+                                <ul>
+                                    <li>
+                                        <font color="#000000">
+                                            画像简介
+                                        </font>
+                                    </li>
+                                    <li>
+                                        <font color="#000000">
+                                            标签类型
+                                        </font>
+                                    </li>
+                                </ul>
+                                <div>
+                                    <font color="#000000">
+                                        数据架构
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        开发流程
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        常见表结构设计
+                                    </font>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <font color="#000000">
+                                            日增量数据
+                                        </font>
+                                    </li>
+                                    <li>
+                                        <font color="#000000">
+                                            日全量数据
+                                        </font>
+                                    </li>
+                                    <li>
+                                        <br/>
+                                    </li>
+                                </ul>
+                                <p></p>
+                                <p>
+                                    <font color="#000000">
+                                        <br/>
+                                    </font>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="15" y="22" fill="#000000" font-family="Helvetica" font-size="12px">
+                    用户画像基础用户画像是什么画像简介标签类型数据架构开发流程常见表结构设计日增量数据日全量数据...
+                </text>
+            </switch>
+        </g>
+        <rect x="0" y="340" width="190" height="230" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="10" y="360" width="170" height="240" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 162px; height: 1px; padding-top: 350px; margin-left: 15px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 250px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                <h1>
+                                    <font color="#000000">
+                                        数据指标体系
+                                    </font>
+                                </h1>
+                                <div>
+                                    <font color="#000000">
+                                        用户属性维度标签
+                                    </font>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                常见用户属性
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                用户性别
+                                            </font>
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <font color="#000000">
+                                            用户行为维度标签
+                                        </font>
+                                    </div>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        用户消费维度标签
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        风险控制维度标签
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        标签命名方式
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="15" y="362" fill="#000000" font-family="Helvetica" font-size="12px">
+                    数据指标体系用户属性维度标签常见用户属性用户性别用户行为维度标签用户消费维度标签风险控制维度标签标签命名方式...
+                </text>
+            </switch>
+        </g>
+        <rect x="290" y="0" width="190" height="270" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="300" y="10" width="170" height="260" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 162px; height: 1px; padding-top: 0px; margin-left: 305px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 270px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                <h1>
+                                    <font color="#000000">
+                                        标签数据存储
+                                    </font>
+                                </h1>
+                                <div>
+                                    <font color="#000000">
+                                        Hive存储
+                                    </font>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                分区插入数据
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                标签Id-mapping
+                                            </font>
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <font color="#000000">
+                                            MySQL存储
+                                        </font>
+                                    </div>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                元数据管理
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                标签量级监控
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                结果集存储
+                                            </font>
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <font color="#000000">
+                                            HBase存储
+                                        </font>
+                                    </div>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        ES存储
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="305" y="12" fill="#000000" font-family="Helvetica" font-size="12px">
+                    标签数据存储Hive存储...
+                </text>
+            </switch>
+        </g>
+        <rect x="290" y="320" width="190" height="300" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="300" y="340" width="170" height="270" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 162px; height: 1px; padding-top: 330px; margin-left: 305px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 280px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                <h1>
+                                    <font color="#000000">
+                                        标签数据开发
+                                    </font>
+                                </h1>
+                                <div>
+                                    <font color="#000000">
+                                        统计类标签开发
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        规则类标签开发
+                                    </font>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                数据调研
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                确定业务规则
+                                            </font>
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <font color="#000000">
+                                            挖掘类标签开发
+                                        </font>
+                                    </div>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        流式计算标签开发
+                                    </font>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                读取Kafka数据
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                标签开发
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                上线工程化
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                打通数据服务层
+                                            </font>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="305" y="342" fill="#000000" font-family="Helvetica" font-size="12px">
+                    标签数据开发统计类标签开发规则类标签开发数据调研确定业务规则挖掘类标签开发流式计算标签开发读取Kafka数据标签开发上线工程化打通数据服务层...
+                </text>
+            </switch>
+        </g>
+        <rect x="560" y="0" width="190" height="190" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="570" y="20" width="170" height="160" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 162px; height: 1px; padding-top: 10px; margin-left: 575px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 170px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                <h1>
+                                    <font color="#000000">
+                                        开发性能调优
+                                    </font>
+                                </h1>
+                                <div>
+                                    <font color="#000000">
+                                        数据倾斜调优
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        Spark读取小文件调优
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        使用spark缓存
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        减少shuffle类算子
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        Id-mapping映射
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        开发中间表
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="575" y="22" fill="#000000" font-family="Helvetica" font-size="12px">
+                    开发性能调优数据倾斜调优Spark读取小文件调优...
+                </text>
+            </switch>
+        </g>
+        <rect x="560" y="320" width="190" height="270" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="570" y="340" width="170" height="240" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 162px; height: 1px; padding-top: 330px; margin-left: 575px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 250px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                <h1>
+                                    <font color="#000000">
+                                        作业流程调度
+                                    </font>
+                                </h1>
+                                <div>
+                                    <font color="#000000">
+                                        Crontab命令调度
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        Airflow工作平台
+                                    </font>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                Airflow服务构成
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                主要功能模块
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                工作流调度
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                常用命令
+                                            </font>
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <font color="#000000">
+                                            标签数据监控模块
+                                        </font>
+                                    </div>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        ETL异常排查
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="575" y="342" fill="#000000" font-family="Helvetica" font-size="12px">
+                    作业流程调度Crontab命令调度...
+                </text>
+            </switch>
+        </g>
+        <rect x="840" y="5" width="190" height="195" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="850" y="25" width="170" height="165" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 162px; height: 1px; padding-top: 15px; margin-left: 855px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 175px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                <h1>
+                                    <font color="#000000">
+                                        用户画像产品化
+                                    </font>
+                                </h1>
+                                <div>
+                                    <font color="#000000">
+                                        标签视图查询
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        标签编辑管理
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        自定义配置查询
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        多纬度透视分析
+                                    </font>
+                                </div>
+                                <div>
+                                    <font color="#000000">
+                                        目标人群圈定
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="855" y="27" fill="#000000" font-family="Helvetica" font-size="12px">
+                    用户画像产品化标签视图查询标签编辑管理自定义配置查询多纬度透视分析目标人群圈定...
+                </text>
+            </switch>
+        </g>
+        <rect x="840" y="325" width="190" height="355" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+        <rect x="850" y="345" width="170" height="325" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 162px; height: 1px; padding-top: 335px; margin-left: 855px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; max-height: 335px; overflow: hidden; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                <h1>
+                                    <font color="#000000">
+                                        用户画像应用
+                                    </font>
+                                </h1>
+                                <div>
+                                    <font color="#000000">
+                                        经营分析
+                                    </font>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                商品分析
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                用户分析
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                流量分析
+                                            </font>
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <font color="#000000">
+                                            精准营销
+                                        </font>
+                                    </div>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                短信/邮件营销
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                ROI效果分析
+                                            </font>
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <font color="#000000">
+                                            个性化推荐与服务
+                                        </font>
+                                    </div>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <font color="#000000">
+                                                Push消息
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                相关商品推荐
+                                            </font>
+                                        </li>
+                                        <li>
+                                            <font color="#000000">
+                                                用户个性化服务
+                                            </font>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="855" y="347" fill="#000000" font-family="Helvetica" font-size="12px">
+                    用户画像应用经营分析商品分析用户分析流量分析精准营销短信/邮件营销ROI效果分析...
+                </text>
+            </switch>
+        </g>
+        <path d="M 90 270.5 L 100 270.5 L 100 320.5 L 110.5 320.5 L 95 339.5 L 79.5 320.5 L 90 320.5 Z" fill="none" stroke="#000000" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 194.94 455.92 L 185.34 453.12 L 275.75 143.41 L 265.67 140.47 L 285.87 126.57 L 295.42 149.15 L 285.35 146.21 Z" fill="none" stroke="#000000" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 380 270.5 L 390 270.5 L 390 300.5 L 400.5 300.5 L 385 319.5 L 369.5 300.5 L 380 300.5 Z" fill="none" stroke="#000000" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 484.99 470.55 L 475.21 468.47 L 551.04 113.03 L 540.77 110.84 L 559.9 95.49 L 571.09 117.3 L 560.82 115.11 Z" fill="none" stroke="#000000" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 650 190.5 L 660 190.5 L 660 300.5 L 670.5 300.5 L 655 319.5 L 639.5 300.5 L 650 300.5 Z" fill="none" stroke="#000000" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 754.97 455.75 L 745.28 453.28 L 830.33 120.16 L 820.16 117.56 L 839.88 102.98 L 850.19 125.23 L 840.02 122.63 Z" fill="none" stroke="#000000" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 930 200.5 L 940 200.5 L 940 305.5 L 950.5 305.5 L 935 324.5 L 919.5 305.5 L 930 305.5 Z" fill="none" stroke="#000000" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>
