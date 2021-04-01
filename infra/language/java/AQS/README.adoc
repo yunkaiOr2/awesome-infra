@@ -1,0 +1,111 @@
+== AbstractqueuedSynchronizer
+
+//:plantuml-server-url: http://plantuml.com/plantuml
+
+在Java多线程编程中，重入锁（Reentrantlock）和信号量（Semaphore）是两个极其重要的并发控制工具。
+
+[plantuml,diagram-classes, svg]
+....
+@startuml
+class AbstractOwnableSynchronizer
+
+class AbstractQueuedSynchronizer {
+    - volatile int state
+    + void acquire(int arg)
+    + boolean release(int arg)
+    + void acquireShared(int arg)
+    + boolean releaseShared(int arg)
+}
+
+interface Lock
+class ReentrantLock
+class Semaphore
+class ReentrantLock$Sync
+class Semaphore$Sync
+
+AbstractOwnableSynchronizer <|-- AbstractQueuedSynchronizer
+AbstractQueuedSynchronizer <|-- ReentrantLock$Sync
+AbstractQueuedSynchronizer <|-- Semaphore$Sync
+Lock <|.. ReentrantLock
+
+ReentrantLock --* ReentrantLock$Sync
+
+Semaphore --* Semaphore$Sync
+
+@enduml
+....
+
+可以看到，重入锁和信号量都在自己内部，实现了一个AbstractQueuedSynchronizer的子类，子类的名字都是Sync。而这个Sync类也正是重入锁和信号量的核心实现。子类Sync中的代码也比较少，其核心算法都由AbstractQueuedSynchronizer提供。
+
+== 基于许可的多线程控制
+
+[source=java]
+....
+class LockSupport {
+    /**
+     * 如果没有可用许可，则挂起当前线程
+     */
+    public static void park();
+    /**
+     * 给thread一个可用的许可，让它得以继续执行
+     */
+    public static void unpark(Thread thread);
+}
+....
+
+== 排他锁(exclusive)和共享锁(shared)
+
+在排他模式上，只有一个线程可以访问共享变量，而共享模式则允许多个线程同时访问。简单地说，重入锁是排他的；信号量是共享的。
+
+
+=== 思考
+
+park()之后，当前线程是停止，还是可以继续执行呢？
+
+[source=java]
+....
+LockSupport.unpark(Thread.currentThread());
+LockSupport.park();
+....
+
+可以继续执行，那是因为在park之前，先执行力unpark，释放了一个许可，也就是说当前线程有一个可用许可。而park在有可用许可的情况下，是不会阻塞线程的。
+
+== AbstractQueuedSynchronizer 内部数据结构
+
+[plantuml,diagram-classes, svg]
+....
+class AbstractQueuedSynchronizer {
+    Node head
+    Node tail
+    int state
+}
+
+node left: 内部保存着一个同步等待队列
+
+class ConditionObject {
+    Node firstWaiter
+    Node lastWaiter
+}
+
+node left: 这就是Condition对象，内部保持着条件变量等待队列每个条件变量都有一个等待队列
+
+class Node {
+    int waitStatus
+    Node prev
+    Node next
+    Thread thread
+    Node nextWaiter
+}
+
+note bottom: 链表的节点，保存着等待的线程对象
+
+ConditionObject <-- AbstractQueuedSynchronizer: create
+ConditionObject ..> Node
+Node <.. AbstractQueuedSynchronizer
+
+....
+
+
+== 附录
+
+* https://juejin.cn/post/6945982971639758856?utm_source=gold_browser_extension#heading-2[Java 并发高频面试题：聊聊你对 AQS 的理解？]
