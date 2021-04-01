@@ -14,3 +14,4 @@
 * https://www.jfokus.se/jfokus20-preso/Getting-the-best-out-of-Spring-Cloud--Kubernetes-and-Istio.pdf[Spring-Cloud--Kubernetes-and-Istio]
 * https://github.com/spring-projects-experimental/spring-native[Spring Native]
 * https://github.com/spring-cloud/spring-cloud-kubernetes[spring-cloud-kubernetes]
+* https://aboullaite.me/protola-alpine-java/[protola-alpine-java]

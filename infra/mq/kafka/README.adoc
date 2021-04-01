@@ -1,3 +1,26 @@
+== 如何防止数据丢失
+
+生成者：同步发送消息，且消息配置为-1或all，leader分区和所有follwer都写到磁盘里。
+
+异步模式下，为防止缓冲区满，可以在配置文件设置不限制阻塞超时时间，当缓冲区满时让生成者一直处于阻塞状态。
+
+生成者：手动提交，即读取到消息后，确认消息消费完毕，才手动提交offset。但是要避免逻辑处理时间过长，导致连接超时，会让消息重复消费。
+
+故kafka一定要配置上消息重试的机制，并且重试的时间间隔一定公钥长一些，默认1秒钟并不符合生成环境（网络中断时间有可能超过1秒）。
+
+* *log.flush.interval.messages* 和 *log.flush.interval.ms* 来配置flush间隔
+
+* 消息大小
+
+== 至少一次语义（At least once semantics）
+
+== 至多一次语义（At most once semantics）
+
+== 精确一次语义（Exactly once semantics）
+
+* 跨分区原子写入（Transactions：Atomic writes across multiple partitions）
+
+
 == 特点
 
 在Kafka中，采用消息追加的方式来写入每个消息，每个消息读写时都会利用Page Cache的预读和后写特性，同时partition中都使用顺序读写，以此来提高I/O性能。
