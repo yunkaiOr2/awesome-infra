@@ -6,3 +6,4 @@
 
 * https://juejin.cn/post/6941740139722997791?utm_source=gold_browser_extension[可能和你想象中不太一样的“IO多路复用扫盲贴”]
 * https://tech.meituan.com/2017/05/19/about-desk-io.html[磁盘I/O那些事]
+* https://tech.meituan.com/2016/11/04/nio.html[Java NIO浅析]
