@@ -1,3 +1,64 @@
+== 重试
+
+image::retry.dio.svg[]
+
+问题：
+
+. 破环消息顺序 
+. 破坏跨边界事件发布到数据一致性
+. 忽略不同类型的错误（可恢复，不可恢复）
+
+如何改善：
+
+* 消除错误类型
+
+[source=java]
+....
+void processMessage(KafkaMessage km) {
+    try {
+        Message m = km.getMessage();
+        transformAndSave(m);
+    } catch (Throwable t) {
+        if (isRecoverable(t)) {
+            // ...
+        } else {
+            // ...
+        }
+    }
+}
+....
+
+* 在消费者内重试可恢复错误
+
+[source=java]
+....
+void processMessage(KafkaMeeesage km) {
+    try {
+        Message m = km.getMessage();
+        transformAndSave(m);
+    } catch(Throwable t) {
+        if (osRecpverable(t)) {
+            doWithRetry(m, Backoff.EXPONENTIAL, this::transformAndSave);
+        } else {
+            // ...
+        }
+    }
+}
+....
+
+（注意：我们使用的任何退避机制都应配置为在达到某个阈值时向我们发出警报，并通知我们潜在的严重错误）
+
+* 遇到不可恢复错误时，将消息直接发送到最后一个主题
+
+* 考虑排序
+
+需要确保属于同一聚合的后续消息也被隐藏。我们还应该考虑以下事实：固定的消费者处理了隐藏消息后，它扔可能会遇到其他错误。这种情况下，其错误处理行为应像我们之前描述的那样：
+
+** 如果错误是可恢复的，则使用规避策略重试
+** 如果错误是不可恢复的，它将隐藏消息并继续下一条。
+
+* 可以接受一些数据不一致？
+
 == 消息不丢失不重复
 
 消费端重复消费：很容易解决，建立去重表
