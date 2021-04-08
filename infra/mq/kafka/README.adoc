@@ -45,6 +45,13 @@ image::topic.dio.svg[]
 * 通过跨分区原子写入实现（Transactions：Atomic writes across multiple partitions）
 * 批量提交id保证消息去重
 
+== DelayQueue
+
+> 基于时间轮+DelayQueue
+
+
+
+
 
 == 特点
 
