@@ -167,3 +167,4 @@ JDBC Proxy最大的问题是违背了DB透明的原则，它需要对不同的�
 * https://www.yuque.com/ccazhw/tuacvk[Mycat1权威指南]
 * https://www.yuque.com/ccazhw/ml3nkf[Mycat2权威指南]
 * https://dbaplus.cn/news-11-1854-1.html[方案虽好，成本先行：数据库Sharding+Proxy实践解析]
+* https://zhuanlan.zhihu.com/p/348100477[什么是数据库的“缓存池”？]
