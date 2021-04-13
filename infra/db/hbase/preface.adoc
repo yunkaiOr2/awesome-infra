@@ -52,3 +52,17 @@ HBase定位region：
 
 . 首先查询zk获取hbase:meta所在地regionserver，其中hbase:meta是一个比较特殊的hbase表（不能切分，只保存在一台regionserver上）
 . 然后去对应的RegionServer上查询表对应的region信息。region信息中会包含开始的rowkey，regionserver点地址等信息。
+
+=== Hlog
+
+WAL异常恢复
+
+
+
+=== HStore
+
+. HStore对应了table中的一个CF列族，
+. HStore包含Memstore和StoreFile（底层实现是HFile）
+. 当其中一个CF多Memstore达到阈值flush时，所有其他CF的也会被flush，每次Memstore Flush，会为每个CF都创建一个新的StoreFile，每个CF同时刷新的目的是为了一个region的数据存储在一个服务器节点上。
+. 由于3的原因，导致了StoreFile的大小不一样，当StoreFile文件数量增长到一定阈值，会触发compact操作，将多个StoreFile合并成一个StoreFile
+. StoreFile以HFile格式保存在HDFS上。
