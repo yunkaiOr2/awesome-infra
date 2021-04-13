@@ -1,11 +1,135 @@
 == 日志收集
 
+== 原生
 
+使用kubectl logs 直接在查看本地保留的日志，或者通过docker engine的log driver把日志重定向到文件、syslog、fluentd等系统
 
 == DaemonSet方式
 
-归档
+在k8s的每个node上部署日志agent，由agent采集所有容器的日志到服务端。
 
 == Sidecar方式
 
-归档
+一个pod运行一个sidecar的日志agent容器，用于采集该pod主容器产生的日志。
+
+
+当Job任务结束后，Pod会立即退出，此时日志可能还未被收集完成，针对这种情况我们可以采用Volumemounts的方式解决。
+
+Job类任务挂载NAS盘，把输出的日志存储在NAS盘，再通过另一个同样挂载NAS盘点Pod来采集Job任务标准输出到日志系统中。
+
+示例：
+
+[source=yml]
+....
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: resouer/ubuntu-bc 
+        command: ["sh", "-c", "echo 'scale=1000; 4*a(1)' | bc -l > /eci/a.log 2>&1"] #运行输出结果重定向到指定文件
+        volumeMounts:
+        - name: log-volume
+          mountPath: /eci
+          readOnly: false
+      restartPolicy: Never
+      volumes:
+      - name: log-volume
+        nfs:
+            path: /eci
+            server: 04edd48c7c-****.cn-hangzhou.nas.aliyuncs.com
+            readOnly: false
+  backoffLimit: 4
+....
+
+部署job
+
+[source=shell]
+....
+kubectl get pod -n fvt-eci
+....
+
+通过kubectl客户端创建log-collection.yaml文件，并拷贝以下内容到该文件。然后执行指令创建一个Pod，挂载NAS盘用来采集Job任务输出日志
+
+[source=yml]
+....
+apiVersion: v1
+kind: Pod
+metadata:
+  name: log-collection
+spec:
+  containers:
+  - image: nginx:latest
+    name: log-collection
+    command: ['/bin/sh', '-c', 'echo &(cat /eci/a.log)'] #查看Job日志文件
+    volumeMounts:
+    - mountPath: /eci
+      name: log-volume
+  restartPolicy: Never
+  volumes:
+  - name: log-volume
+    nfs:
+      server: 04edd48c7c-****.cn-hangzhou.nas.aliyuncs.com
+      path: /eci
+      readOnly: false
+....
+
+.采集方式对比
+|===
+||原生方式|Daemonset方式|Sidecar方式
+|采集日志类型
+|标准输出
+|标准输出+部分文件
+|文件
+
+|部署运维
+|低，原生支持
+|一般，需维护Daemonset
+|较高，每个需要采集日志的Pod都需要部署sidecar容器
+
+|日志分类存储
+|无法实现
+|一般，可通过容器/路径映射
+|每个Pod可单独配置，灵活性高
+
+|多租户隔离
+|弱
+|一般，只能通过配置间隔离
+|强，通过容器进行隔离，可单独分配资源
+
+|支持集群规模
+|本地存储无限制，若使用syslog、fluentd会有单点限制
+|中小型规模，业务数最多支持百万级别
+|无限制
+
+|资源占用
+|低，docker engine提供
+|较低，每个节点运行一个容器
+|较高，每个pod运行一个容器
+
+|查询便捷性
+|低
+|较高，可进行自定义查询、统计
+|高，可根据业务特点进行定制
+
+|可定制性
+|低
+|低
+|高，每个pod单独配置
+
+|适用场景
+|测试、poc等非生产场景
+|功能单一型的集群
+|大型、混合型、PASS型集群
+
+|===
+
+== 附录
+
+* https://zhuanlan.zhihu.com/p/46479241[Kubernetes日志采集Sidecar模式介绍]
+* https://help.aliyun.com/document_detail/188772.html?spm=a2c4g.11186623.6.1219.6f7610e8RLtc1t[通过阿里云日志服务采集日志]
+* https://help.aliyun.com/document_detail/66659.html[采集标准Docker容器日志]

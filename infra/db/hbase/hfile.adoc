@@ -1,0 +1,7 @@
+== HFile
+
+image::hfile-data-structure.dio.svg[]
+
+HFile的索引是按照rowkey排序的聚簇索引，索引树一般为二层或者三层，索引节点比Mysql对B+树大，默认是64KB。数据查找的时候通过树形结构定位到节点，节点内部数据是按照rowkey有序的，可以通过二分查找快速定位到目标
+
+image::hfile-index.dio.svg[]

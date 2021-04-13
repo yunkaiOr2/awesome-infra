@@ -1,0 +1,15 @@
+== Kylin数据模型
+
+Kylin的数据模型本质上是将二维表（Hive表）转换为Cube，然后讲Cube存储到HBase表中，也就是两次转换。
+
+
+=== 小结
+
+适用于聚合查询场景；因为数据预聚合，Kylin可以说是最快的查询引擎（group-by查询这样的复杂查询，可能只需要扫描1条数据）；
+kylin查询效率取决于是否命中Cubold，查询波动较大；
+HBase索引有点类似Mysql中的联合索引，维度在rowkey中的排序和查询维度组合对查询效率影响巨大；所以kylin建表需要业务专家参与。
+
+
+== 附录
+
+* https://www.infoq.cn/article/ufwbpmcf9bnxn38zkaxo[Kylin、Druid、ClickHouse 核心技术对比]
