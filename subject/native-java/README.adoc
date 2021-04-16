@@ -2,9 +2,6 @@
 
 > Fabric8提供了一个完全集成的开源微服务平台，可在任何的Kubernetes和OpenShift环境中开箱即用。
 
-== Feign
-
-> 基于注解的HTTP调用框架
 
 == 附录
 
