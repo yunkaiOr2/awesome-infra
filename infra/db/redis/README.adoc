@@ -21,6 +21,8 @@ image::redis_reactor.dio.svg[]
 
 == 数据结构
 
+image::architecture.dio.svg[]
+
 === zset
 
 > sorted set
