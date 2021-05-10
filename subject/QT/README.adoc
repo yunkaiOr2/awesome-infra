@@ -1,7 +1,25 @@
 = 量化投资
 
+
+== 指标（Indicators）
+
+* https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/hull-moving-average[Hull Moving Average(HMA)]
+* https://www.investopedia.com/terms/s/sma.asp[Simple Moving Average(SMA)]
+* https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/ema[Exponential Moving Average(EMA)]
+* https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/wma[Weighted Mobing Average(WMA)]
+* https://www.investopedia.com/terms/p/ppo.asp[Percentage Price Oscillator(PPO)]
+
+== 论文和实现（Paper & Implementation）
+
+* https://github.com/nayash/stock_cnn_blog_pub[Stock Market Buy/Sell/Hold prediction Using convolutional Neural Network]
 * https://towardsdatascience.com/predicting-prices-of-bitcoin-with-machine-learning-3e83bb4dd35f[Predicting Prices of Bitcoin with Machine Learning]
-
 * https://towardsdatascience.com/predicting-bitcoin-prices-with-deep-learning-438bc3cf9a6f[Predict Bitcoin Prices with Deep Learning]
-
 * https://github.com/StockSharp/StockSharp[Algorithmic trading and quantitative trading open source platform to develop trading robots (stock markets, forex, crypto, bitcoins, and options).]
+
+== APIs
+
+* https://www.alphavantage.co/[Free Stock APIs in JSON & Excel]
+
+== 策略（Strategy）
+
+* https://celanbryant.medium.com/how-much-can-you-make-using-automated-trading-strategies-answer-over-1-2m-in-2020-4106bae71912[How Much Can You Make Using Automated Trading Strategies? Answer: Over $1.2M in 2020*]
