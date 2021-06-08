@@ -4,6 +4,8 @@ include::transaction.ad[]
 
 include::shard.ad[]
 
+== 回表查询
+
 == 附录
 
 * https://juejin.cn/post/6937150983210450957?utm_source=gold_browser_extension[一文带你读懂MySQL锁机制]
