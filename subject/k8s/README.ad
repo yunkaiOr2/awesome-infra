@@ -9,6 +9,14 @@ include::keywords.adoc[]
 # 查看pod使用的镜像
 kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}"
 
+# list the IP addresses of all load balancers
+kubectl get svc --all-namespaces -o jsonpath='{range.items[?(@.status.loadBalancer.ingress)]}{.status.loadBalancer.ingress[*].ip} '
+
+# For Istio/Knative, the command will be different
+kubectl get svc --namespace=istio-system knative-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip} '
+
+
+
 # 
 #
 #
