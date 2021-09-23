@@ -42,3 +42,4 @@ image::architecture.dio.svg[]
 == 附录
 
 * https://juejin.cn/post/6928407842009546766?utm_source=gold_browser_extension[Redis多线程演进]
+* https://www.cnblogs.com/zhengyun_ustc/p/rotter.html[rotter 数据迁移]

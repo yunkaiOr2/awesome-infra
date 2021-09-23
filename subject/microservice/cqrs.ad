@@ -1,0 +1,8 @@
+= CQRS
+
+>  CQRS 是“命令查询责任分离”（Command Query Responsibility Segregation）的缩写.
+
+.系统重要命令
+|===
+|操作者|用户故事|命令|描述
+|===
