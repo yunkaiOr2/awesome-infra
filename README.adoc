@@ -10,6 +10,4 @@ include::./infra/catalog.adoc[]
 
 include::./subject/catalog.adoc[]
 
-include::./Data-Structure/catalog.adoc[]
-
 include::./algorithm/catalog.adoc[]

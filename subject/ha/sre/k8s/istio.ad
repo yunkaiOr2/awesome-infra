@@ -1,4 +1,4 @@
-
+:imagesdir: ../../../../static/img
 
 = istio
 
@@ -26,7 +26,7 @@ See what`s happening with rich automatic tracing, monitoring,and logging of all 
 
 == bookinfo
 
-image::bookinfo.dio.svg[]
+image::k8s_bookinfo.dio.svg[]
 
 
 

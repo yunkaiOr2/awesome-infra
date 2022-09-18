@@ -1,3 +1,5 @@
+:imagesdir: ../../static/img
+
 == Microservice
 
 === issue
@@ -12,7 +14,7 @@
 
 另一方面，事件通常由一个有界上下文中的服务发出，并异步发布到Kafka，以供其他有界上下文中的服务消费。
 
-image::context-msg.dio.svg[]
+image::micro_context_msg.dio.svg[]
 
 
 

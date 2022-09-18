@@ -1,3 +1,5 @@
+:imagesdir: ../../../../static/img
+
 == CRI(Container Runtime Interface)
 
 统一容器运行时接口，凡是支持CRI的容器运行时，都可以作为K8s的底层容器运行时。

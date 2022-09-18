@@ -1,4 +1,6 @@
-image::./ddd.dio.svg[]
+:imagesdir: ../../static/img
+
+image::micro_ddd.dio.svg[]
 
 可以看得出来，主要是对service进行了拆分。一般可以拆分为三层：
 
