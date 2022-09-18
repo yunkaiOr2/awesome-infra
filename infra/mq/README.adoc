@@ -1,6 +1,8 @@
+:imagesdir: ../../static/img
+
 == 重试
 
-image::retry.dio.svg[]
+image::mq_retry.dio.svg[]
 
 问题：
 

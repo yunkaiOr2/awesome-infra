@@ -1,3 +1,5 @@
+:imagesdir: ../../../static/img
+
 == HBase主要角色
 
 === HBase访问接口

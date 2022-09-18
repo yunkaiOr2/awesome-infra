@@ -1,0 +1,65 @@
+:imagesdir: ../../../static/img
+== Presto
+
+=== Presto架构
+
+image::olap_presto_framework.dio.svg[]
+
+=== Presto执行查询过程简介
+
+. 完全基于内存的并行计算
+. 流水线
+. 本地化计算
+. 动态编译执行计划
+. 消息使用内存和数据结构
+. 类BlinkDB的近似查询
+. GC控制
+
+==== 提交查询
+
+用户使用Presto Cli提交一个查询语句，Cli使用HTTP协议与Coordinator通信，Coordinator收到查询请求后调用SqlParser解析SQL语句得到Statement对象，并将Statement对象封装成一个QueryStarter对象放入线程池中等待执行。
+
+image::olap_presto_query.dio.svg[]
+
+==== SQL编译过程
+
+image::olap_presto_sql_compiler.dio.svg[]
+
+样例SQL:
+
+[source=sql]
+....
+select count(*), c1.rank from dim.city c1 join dim.city c2 on c1.id = c2.id where c1.id > 10 group by c1.rank limit 10;
+....
+
+image::olap_presto_query_logic_plan.dio.svg[]
+
+==== 物理执行计划
+
+逻辑执行计划图中的虚线就是Presto对逻辑执行计划的切分点，逻辑计划Plan生成的SubPlan分为四个部分，每个SubPlan都会提交到一个或者多个Worker节点上执行。
+
+SubPlan有几个重要的属性planDistribution、outputPartitioning、partitionBy
+
+. planDistribution表示一个查询Stage的分发方式，逻辑执行计划图中的4个SubPlan共有3个不同的PlanDistribution方式：Source表示这个SubPlan是数据源，Source类型的任务会按照数据源大小确定分配多少个节点进行执行；Fixed表示这个SubPlan会分配固定节点数执行；None表示这个SubPlan只分配一个节点进行执行。
+.. SubPlan0和SubPlan1 PlanDistribution=source，这两个SubPlan都是提供数据源的节点，SubPlan1所有节点的读取数据都会发向SubPlan0的每一个节点；SubPlan2分配8个节点执行最终的聚和操作；SubPlan3只负责输出最后计算完成的数据。
+
+. OutputPartitioning属性只有两个只None和HASH，表示这个SubPlan的输出是否按照partitionBy的key值对数据进行Shuffle。在下面的执行计划中只有SubPlan0的OutputPartitioning=HASH，所以SubPlan2接收到的数据是按照rank字段Partition后的数据。
+
+image::olap_presto_query_physical_plan.dio.svg[]
+
+==== 完全基于内存的并行计算
+===== 查询的并行执行流程
+
+Presto SQL的执行流程如下图所示
+
+. Cli通过HTTP协议提交SQL查询之后，查询请求封装成一个SqlQueryExecution对象交给Coordinator的SqlQueryManager#queryExecutor线程池去执行
+. 每个SqlQueryExecution线程（图中Q-X线程）启动后对查询请求的SQL进行语法解析和优化并最终生成多个Stage的SqlStageExecution任务，每个SqlStageExecution任务仍然交给同样的线程池去执行
+. 每个SqlStageExecution线程（图中S-X线程）启动后每个Stage的任务按PlanDistribution属性构造一个或者多个RemoteTask通过HTTP协议分配给远端的Worker节点执行
+. Worker节点接收到RemoteTask请求之后，启动一个SqlTaskExecution线程（图中T-X线程）将这个任务的每个Split包装成一个PrioritizedSplitRunner任务（图中SR-X）交给Worker节点的TaskExecutor#executor线程池去执行
+
+image::olap_presto_sql_exe.dio.svg[]
+
+
+== 附录
+
+* https://tech.meituan.com/2014/06/16/presto.html[Presto实现原理和美团的使用实践]

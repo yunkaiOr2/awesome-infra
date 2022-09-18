@@ -1,6 +1,8 @@
+:imagesdir: ../../../static/img
+
 == Pulsar
 
-image::pulsar.dio.svg[]
+image::mq_pulsar.dio.svg[]
 
 Plusar和其他消息系统的最根本区别在于其采用计算和存储分离的分层架构。Pulsar集群由两层组成：无状态服务层，它由一组接受和传递消息的broker组成；分布式存储层，它由一组名为bookies的Apache Bookeeper存储节点组成，具备高可用、强一致、低延时的特点。
 

@@ -1,8 +1,10 @@
+:imagesdir: ../../../../static/img
+
 == TCP
 
 > 面向连接，可靠的，基于字节流
 
-image::../mtu.dio.svg[]
+image::tcp_mtu.dio.svg[]
 
 === MTU: Maximum Transmit Unit 最大传输单元
 

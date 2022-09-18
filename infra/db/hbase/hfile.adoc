@@ -1,3 +1,5 @@
+:imagesdir: ../../../static/img
+
 == HFile
 
 image::hfile-data-structure.dio.svg[]

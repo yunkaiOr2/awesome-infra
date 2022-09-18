@@ -1,3 +1,5 @@
+:imagesdir: ../../../static/img
+
 == Hbase读请求分析
 
 === HBase如何从HFile中找到某个rowkey？
