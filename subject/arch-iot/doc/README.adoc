@@ -1,0 +1,3 @@
+=Arch IoT
+
+命名参考了Arch Linux，并且遵循Arch Linux的设计哲学
