@@ -17,8 +17,8 @@ var (
 )
 
 type DeviceQryService interface {
-	getByDeviceId(productKey, deviceId string) (Device, error)
-	getByIotId(iotId string) (Device, error)
+	GetByDeviceId(productKey, deviceId string) (Device, error)
+	GetByIotId(iotId string) (Device, error)
 }
 
 type DeviceCmdService interface {
