@@ -1,5 +1,8 @@
 package sep
 
+/*
+消息流转
+*/
 type IFTTTService interface {
 	CreateParser()
 	UpdateParser()
@@ -27,4 +30,23 @@ type IFTTTService interface {
 	PublishScript()
 	StartParser()
 	StopParser()
+}
+
+/*
+服务端订阅
+*/
+type ServiceSubscribe interface {
+	CreateSubscribeRelation()
+	UpdateSubscribeRelation()
+	QuerySubscribeRelation()
+	DeleteSubscribeRelation()
+	CreateConsumerGroup()
+	UpdateConsumerGroup()
+	QueryConsumerGroupByGroupId()
+	QueryConsumerGroupList()
+	queryConsumerGroupStatus()
+	ResetConsumerGroupPosition()
+	DeleteConsumerGroup()
+	CreateConsumerGroupSubscribeRelation()
+	DeleteConsumerGroupSubscribeRelation()
 }
