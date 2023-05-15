@@ -1,4 +1,4 @@
-:imagesdir: ../../static/img
+:imagesdir: ../static/img
 == Log Structured Merge Trees(LSM)
 
 > 简单来说，LSM被设计来提供比传统的B+树或者ISAM更好的写操作吞吐量，通过消去随机的本地更新操作来达到这个目标(顺序读写快，随机读写慢)。
