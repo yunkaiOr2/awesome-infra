@@ -1,0 +1,5 @@
+{"keys": ["OLTP"], "desc": "online transaction processing 在线事务处理"}
+{"keys": ["OLAP"], "desc": "online analytic processing 在线分析处理"}
+{"keys": ["ETL", "Extract Transform Load"], "desc": "Extract Transform Load"}
+{"keys": ["聚簇索引"], "desc": ""}
+{"keys": ["SOLID", "desc": ""]}
