@@ -1,6 +1,6 @@
 == AbstractqueuedSynchronizer
 
-//:plantuml-server-url: http://plantuml.com/plantuml
+:plantuml-server-url: http://plantuml.com/plantuml
 
 在Java多线程编程中，重入锁（Reentrantlock）和信号量（Semaphore）是两个极其重要的并发控制工具。
 
@@ -74,6 +74,7 @@ LockSupport.park();
 
 [plantuml,diagram-classes, svg]
 ....
+@startuml
 class AbstractQueuedSynchronizer {
     Node head
     Node tail
@@ -102,7 +103,7 @@ note bottom: 链表的节点，保存着等待的线程对象
 ConditionObject <-- AbstractQueuedSynchronizer: create
 ConditionObject ..> Node
 Node <.. AbstractQueuedSynchronizer
-
+@enduml
 ....
 
 

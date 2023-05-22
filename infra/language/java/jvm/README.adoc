@@ -8,3 +8,5 @@ image::jvm.dio.svg[]
 == GC
 
 include::gc.adoc[]
+
+

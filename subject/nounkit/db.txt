@@ -3,3 +3,4 @@
 {"keys": ["ETL", "Extract Transform Load"], "desc": "Extract Transform Load"}
 {"keys": ["聚簇索引"], "desc": ""}
 {"keys": ["SOLID", "desc": ""]}
+{"keys": ["操作转换"， "Operational transformation"], "desc": ["冲突解决算法。专为可同事编辑的有序列表而设计，如文本文档的字符列表。"]}
