@@ -6,8 +6,6 @@
 
 也可以通过 Idea + AsciiDoc + Diagrams.​net Integration 编写
 
-include::./infra/catalog.adoc[]
+== 目标
 
-include::./subject/catalog.adoc[]
-
-include::./algorithm/catalog.adoc[]
+像管理代码一样管理文档
