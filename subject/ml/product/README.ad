@@ -1,0 +1,16 @@
+== AI Product
+
+=== 典型生命周期
+
+数据准备 > 模型开发 > 训练及调优 > 模型部署
+
+=== 附录
+
+* https://github.com/combust/mleap[mleap]
+* https://github.com/openvinotoolkit/openvino[open-source toolkit for optimizing and deploying AI inference]
+* https://huggingface.co/[huggingface]
+* https://github.com/bytedance/primus[字节primus]
+* https://console.cloud.tencent.com/tione[腾讯ti]
+* https://aistudio.baidu.com/aistudio/index[百度飞浆]
+* https://github.com/microsoft/pai[Resource scheduling and cluster management for AI]
+* https://www.aliyun.com/product/bigdata/learn[机器学习平台PAI]

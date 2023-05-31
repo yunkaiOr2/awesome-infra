@@ -10,3 +10,4 @@
 * https://github.com/linjinjin123/awesome-AIOps
 * https://github.com/hackerchenzhuo/KTeleBERT
 * https://mp.weixin.qq.com/s/DJhJKD4TCDgSwyLZbSotKg[AI时代的全链路监控，阿里工程师怎么做？]
+* https://github.com/getsentry/sentry[以程序员为本的，错误跟踪&性能监控平台]
