@@ -1,8 +1,3 @@
-== Fabric8
-
-> Fabric8提供了一个完全集成的开源微服务平台，可在任何的Kubernetes和OpenShift环境中开箱即用。
-
-
 == 附录
 
 * https://openjdk.java.net/projects/portola/[最小的Java运行环境镜像]

@@ -1,3 +1,5 @@
+:imagesdir: ../../static/img
+
 == Druid数据模型
 
 Druid数据模型比较简单，它将数据进行预聚合，只不过预聚合的方式与Kylin不同，kylin是Cube化，Druid的预聚合方式是将所有维度进行Group-by

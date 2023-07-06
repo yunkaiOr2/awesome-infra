@@ -1,6 +1,11 @@
+:imagesdir: ../../static/img
 == es
 
-== Lucene
+=== 环境准备
+
+
+
+=== Lucene
 
 索引原理：
 

@@ -1,0 +1,49 @@
+---
+# Permit co-located instances for solitary minikube virtual machines.
+# https://github.com/elastic/helm-charts/tree/main/elasticsearch
+antiAffinity: "soft"
+
+# Shrink default JVM heap.
+esJavaOpts: "-Xmx128m -Xms128m"
+  
+# single node config
+replicas: 1
+minimumMasterNodes: 1
+extraEnvs:
+  - name: discovery.type
+    value: single-node
+  - name: cluster.initial_master_nodes
+    value: ""
+
+# healthCheck
+clusterHealthCheckParams: "wait_for_status=yellow&timeout=15s"
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 200
+  periodSeconds: 10
+  successThreshold: 3
+  timeoutSeconds: 5
+
+# single node相关的配置8.x暂时不能用，这里取7.x
+imageTag: "7.17.3"
+networkHost: 0.0.0.0
+
+service:
+  type: ClusterIP
+
+# Allocate smaller chunks of memory per pod.
+resources:
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "1Gi"
+
+# Request smaller persistent volumes.
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "standard"
+  resources:
+    requests:
+      storage: 30Gi 
