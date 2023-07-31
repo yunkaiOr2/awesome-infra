@@ -4,7 +4,7 @@
 
 > 面向连接，可靠的，基于字节流
 
-image::tcp_mtu.dio.svg[]
+image::base_tcp_mtu.dio.svg[]
 
 === MTU: Maximum Transmit Unit 最大传输单元
 

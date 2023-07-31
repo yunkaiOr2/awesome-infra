@@ -2,7 +2,7 @@
 
 = HBase
 
-image::hbase.dio.svg[]
+image::kv_hbase.dio.svg[]
 
 == 为什么是HBase？
 

@@ -10,7 +10,7 @@
 则通过tail淘汰掉队尾的节点，同时在HashMap中移除Key。
 . get(key),通过HashMap找到LRU链表节点，因为根据LRU原理，这个节点是最新访问的，所以要把节点插入队头，然后返回缓存的值。
 
-image::lru.dio.svg[]
+image::cache_lru.dio.svg[]
 
 == 近似lru（redis）
 

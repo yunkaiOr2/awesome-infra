@@ -1,6 +1,11 @@
 :imagesdir: ../../../static/img
 == Kafka
 
+=== 特点
+
+在Kafka中，采用消息追加的方式来写入每个消息，每个消息读写时都会利用Page Cache的预读和后写特性，同时partition中都使用顺序读写，以此来提高I/O性能。
+虽然Kafka能够根据偏移量查找到具体的某个消息，但是查找过程是顺序查找，因此如果数据很大的话，查找效率就很低。所以Kafka中采用了分段和索引的方式来解决查找效率问题。Kafka把一个patition大文件又分成了多个小文件段，每个小文件段以偏移量命名，通过多个小文件段，不仅可以使用二分搜索法很快定位消息，同时也容易定期清除或删除已经消费完的文件，减少磁盘占用。为了进一步提高查找效率，Kafka为每个分段后的数据建立了索引文件，并通过索引文件稀疏存储来降低元数据占用大小。
+
 === 事件日志、发布者和消费者
 
 kafka是用来处理数据流的系统。从概念上讲，我们可以认为Kafa包括三个基本组件：
@@ -21,6 +26,74 @@ image::mq_kafka_topic.dio.svg[]
 
 使用分区键，使我们能够确保与给定ID关联的每条消息都会发不到单个分区上。还需要注意点是，可以将一个消费者的多个实例部署为一个消费者组。Kafka将确保给定分区中的任何消息将始终由组中的同一消费者实例读取。
 
+=== 分区数设置多少合适
+
+kafka的每个topic都可以创建多个partition，partition的数量无上限，并不会像replica一样受限于broker的数量，因此partition的数量可以随心所欲的设置。那确定partition的数量就需要思考一些权衡因素。
+
+==== 越多的partition可以提供更高的吞吐量
+
+* 单个partition是kafka并行操作的最小单位。
+* kafka的吞吐量显而易见，在资源充足的情况下，partition越多速度越快
+* 假设我现在一个partition的最大传输速度为p，目前kafka集群共有三个borker，每个broker的资源足够支撑三个partition最大速度传输，那我的集群最大传输速度为3*3p=9p。
+
+==== 越多的分区学院打开更多的文件句柄
+
+在kafka的broker中，每个分区都会对照着文件系统的一个目录。
+在kafka的数据日志目录中，每个日志数据段都会分配两个文件，一个索引文件和一个数据文件。因此，随着partition的增多，需要文件句柄数急剧增加，必要时需要调整操作系统允许打开的文件句柄数。
+
+==== 更多的分区导致端对端的延迟
+
+kafka端对端的延迟为producer端发布消息到consumer端消费消息所需要的时间，即consumer接收消息的时间减去produce发布消息的消息。
+
+
+kafka在消息正确接收后才会暴露给消费者，即在保证in-sync副本复制成功之后才暴漏，瓶颈来自于与此。
+
+
+leader broker上的副本从其他broker的leader上复制数据的时候智慧开启一个线程，假设partition数量为n，每个副本同步的时间为1ms，那in-sync操作完成所需的时间即n * 1ms,若n为10000，则需要10秒才能返回同步状态，数据才能暴露给消费者，这就导致了较大端对端的延迟。
+
+==== 越多的partition意味着需要更多的内存
+
+在新版本的kafka中可以支持批量提交和批量消费，而设置了批量提交和批量消费后，每个partition都会需要一定的内存空间。
+
+* 假设为100k，当partition为100时，producer端和consumer端都需要10M的内存；当partition为100000时，producer端和consumer则都需要10G内存
+* 无限的partition数量很快就会占据大量内存，造成性能瓶颈。
+
+==== 越多的partition会导致更长时间的恢复期
+
+. kafka通过多副本复制技术，实现kafka的高可用性和稳定性。每个partition都会有多个副本存在于多个broker中，其中一个副本为leader，其余的为follower。
+. kafka集群其中一个broker出现故障时，在这个broker上的leader会需要再其他broker上重新选择一个副本启动为leader，这个过程由kafka controller来完成，主要是从zookeeper读取和修改受影响partition的一些元数据信息。
+. 通常情况下，当一个broker有计划的停机，该broker上的partition leader会在broker停机前有次序的一一移走。
+
+假设移走一个需要1ms，10个partition leader则需要10ms，这影响很小，并且在移动其中一个leader的时候，其他9个leader是可用的。因此实际上每个partition leader的不可用时间1ms。但是在宕机情况下，所有的10个partition leader同时无法使用，则需要依次移走，最长的leader则需要10ms的不可用时间窗口，平均不可用时间窗口为5.5ms，假设10000个leader在此宕机的broker上，平均的不可用时间窗口则为5.5s。
+
+更极端的情况是，当时的broker是kafka controller所在节点，则需要等待新的kafka leader节点在投票中产生并启用，之后新启动的kafka leader还需要从zookeeper读取没一个partition的元数据信息用于初始化数据。在这之前partition leader的迁移一直处于等待状态
+
+==== 总结
+
+通常情况下，越多partition会带来越高的吞吐量，但是同时也会给broker节点带来相应的性能损耗和潜在风险，虽然这些影响很小，单不可忽略，因此需要根据自身broker节点的实际情况来设置partition的数量以及replica的数据。
+
+=== 副本分配规则
+
+副本数 <= Broker数，同一个副本不可能在同一个Broker中存在
+
+. 将副本平均分布在所有的Broker上。
+. partition的多个副本应该分配在不同的Broker上。
+. 如果所有的Broker有机架信息的话，partition的副本应该分配到不同的机架上。
+
+==== 无机架方式
+
+. 从broker.list随机选择一个Broker，使用round-robin算法分配每个partition的第一个副本；
+. 对于这个partition的其他副本，逐渐增加Broker.id来选择replica的分配
+. 对于副本分配来说，每经历一次Broker的遍历，则第一个副本跟后面的副本直接的间隔+1
+
+==== 分区扩容如何分配
+
+如果我有个topic 2分区3副本；分配情况如下
+````
+allBrokers: [0, 1, 4, 2, 3]
+(p-0, [0,2,3])
+(p-1, [1,3,0])
+````
 
 
 == 如何防止数据丢失
@@ -52,9 +125,7 @@ image::mq_kafka_topic.dio.svg[]
 
 
 
+== 附录
 
-
-== 特点
-
-在Kafka中，采用消息追加的方式来写入每个消息，每个消息读写时都会利用Page Cache的预读和后写特性，同时partition中都使用顺序读写，以此来提高I/O性能。
-虽然Kafka能够根据偏移量查找到具体的某个消息，但是查找过程是顺序查找，因此如果数据很大的话，查找效率就很低。所以Kafka中采用了分段和索引的方式来解决查找效率问题。Kafka把一个patition大文件又分成了多个小文件段，每个小文件段以偏移量命名，通过多个小文件段，不仅可以使用二分搜索法很快定位消息，同时也容易定期清除或删除已经消费完的文件，减少磁盘占用。为了进一步提高查找效率，Kafka为每个分段后的数据建立了索引文件，并通过索引文件稀疏存储来降低元数据占用大小。
+* https://juejin.cn/post/7150828585404596237[kafka分区副本的分配规则]
+* https://juejin.cn/post/6988344277654847501[kafka分区数设置多少合适]

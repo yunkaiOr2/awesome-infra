@@ -1,4 +1,8 @@
+:imagesdir: ../../static/img
+
 == LFU(Least Frequently Used)
+
+image::cache_lfu.dio.svg[]
 
 == LFU-Aging算法
 

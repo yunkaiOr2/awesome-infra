@@ -1,7 +1,9 @@
+:imagesdir: ../../../static/img
+
 = Mybatis
 
 
-image::mybatis.dio.svg[]
+image::orm_mybatis.dio.svg[]
 
 == SqlSession
 
