@@ -1,0 +1,12 @@
+:imagesdir: ../../../static/img
+
+=== Distributed Transaction Coordinator(DTC,分布式事务)
+
+==== 2PC
+
+image::oltp_dtc_2pc.dio.svg[]
+
+==== TCC
+
+image::oltp_dtc_tcc.dio.svg[]
+
