@@ -1,0 +1,8 @@
+= Speech
+
+
+== 附录
+
+* https://tts.readthedocs.io/en/dev/models/tortoise.html[TTS]
+* https://github.com/Aidoku/Aidoku[A free and open source manga reading application for iOS and iPadOS]
+*https://github.com/jaywalnut310/vits[VITS]

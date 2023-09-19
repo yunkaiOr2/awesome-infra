@@ -1,7 +1,7 @@
 :imagesdir: ../../static/img
 = kubernetes
 
-include::keywords.ad[]
+include::keywords.adoc[]
 
 == 常用命令
 
@@ -24,7 +24,6 @@ kubectl get svc --namespace=istio-system knative-ingressgateway -o jsonpath='{.s
 # 
 kubectl rollout status deployment/kiali -n istio-system
 ....
-
 
 == 附录
 

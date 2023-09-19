@@ -1,3 +1,4 @@
+:imagesdir: ./static/img
 = 开源架构
 
 > 说明：内容来源于互联网

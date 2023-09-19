@@ -1,15 +1,10 @@
 == mysql
 
-include::transaction.ad[]
+include::transaction.adoc[]
 
-include::shard.ad[]
+include::shard.adoc[]
 
 === 回表查询
 
 === 附录
-
-* https://juejin.cn/post/6937150983210450957?utm_source=gold_browser_extension[一文带你读懂MySQL锁机制]
-* https://www.yuque.com/ccazhw/tuacvk[Mycat1权威指南]
-* https://www.yuque.com/ccazhw/ml3nkf[Mycat2权威指南]
-* https://dbaplus.cn/news-11-1854-1.html[方案虽好，成本先行：数据库Sharding+Proxy实践解析]
 * https://zhuanlan.zhihu.com/p/348100477[什么是数据库的“缓存池”？]
