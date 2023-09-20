@@ -1,6 +1,6 @@
 == mysql
 
-include::transaction.adoc[]
+include::acid.adoc[]
 
 include::shard.adoc[]
 
