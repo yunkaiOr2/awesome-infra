@@ -1,7 +1,7 @@
-== Machine Learn
+= Machine Learning
 > 机器学习
 
-=== 目标
+== 目标
 
 1. 把玩知名开源项目
 2. 学习ml的笔记

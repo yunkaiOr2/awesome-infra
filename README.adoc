@@ -1,7 +1,7 @@
 :imagesdir: ./static/img
 = 开源架构
 
-> 说明：内容来源于互联网
+> 说明：部分内容来源于互联网，部分内容来源于过往工作。
 
 采用Vscode + AsciiDoc + Draw.io Integration 编写
 

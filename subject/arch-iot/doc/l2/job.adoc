@@ -1,0 +1,9 @@
+= Job
+
+> 限流排队业务设计
+
+== 背景
+
+tenantId + identifier + deviceId
+
+== case
