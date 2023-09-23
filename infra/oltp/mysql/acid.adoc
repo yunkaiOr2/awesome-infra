@@ -68,10 +68,59 @@ show variables like 'tx_isolation';
 == Distributed Transaction Coordinator(DTC,分布式事务)
 
 === 2PC
+> Two Phase Commitment Protocol(两阶段提交协议)
 
 image::oltp_dtc_2pc.dio.svg[]
 
+事务管理器分2阶段协调资源：
+
+1. 一阶段：准备
+2. 二阶段：资源提交/回滚
+
+
+
 === TCC
+> Try-Confirm-Cancel
 
 image::oltp_dtc_tcc.dio.svg[]
+
+一阶段：Try
+
+二阶段：Confirm/Cancel
+
+三个操作描述:
+
+1. Try：检测预留资源
+2. Confirm真正的业务操作提交
+3. Cancel：预留资源释放
+
+TCC实际上是服务化的两阶段提交协议，业务开发者需要实现这三个服务接口，第一阶段服务由业务代码编排来调用Try接口进行资源预留，所有参与者的Try接口都成功了，事务管理器会提交事务，并调用每个参与者的Confirm接口真正提交业务操作，否则调用每个参与者的Cancel接口回滚事务。
+
+=== SAGA
+
+Saga是一种补偿协议，在Saga模式下，分布式事务内多个参与者，每一个参与者都是一个冲正补偿服务，需要用户根据业务场景实现其正向操作和逆向操作。
+
+Saga正向服务于补偿服务也需要业务开发者实现。
+
+=== XA
+
+== Seata(Simple Extensible Autonomous Transaction Architecture)
+
+> Seata是一款开源的分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。
+
+image:oltp_dtc_seata.dio.svg[]
+
+在Seata中，分布式事务的执行流程:
+
+* TM开启分布式事务(TM向TC注册全局事务记录)
+* 按业务场景，编排数据库、服务等事务内资源(RM向TC汇报资源准备状态);
+* TM结束分布式事务，，事务一阶段结束(TM通知TC提交/回滚分布式事务);
+* TC汇总事务信息，决定分布式事务是提交还是回滚
+* TC通知所有RM提交/回滚资源，事务二阶段结束；
+
+=== AT
+
+AT模式是Seata中一种无侵入的分布式事务解决方案。在AT模式下，用户只需要关心自己的“业务SQL”，用户的“业务SQL”作为一阶段，Seata框架会自动生成事务的二阶段提交和回滚操作。
+
+无侵入，有全局行锁，性能一般
 

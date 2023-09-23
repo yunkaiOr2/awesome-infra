@@ -1,4 +1,4 @@
-package sep
+package ifttt
 
 /*
 消息流转

@@ -11,9 +11,10 @@ type Device struct {
 type DeviceState uint8
 
 var (
-	UNKNOWN DeviceState = 0
-	ONLINE  DeviceState
-	OFFLINE DeviceState
+	UN_ACTIVE DeviceState = 1
+	ONLINE    DeviceState
+	OFFLINE   DeviceState
+	DISABLE   DeviceState
 )
 
 type DeviceQryService interface {
