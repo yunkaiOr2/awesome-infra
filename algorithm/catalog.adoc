@@ -1,4 +1,0 @@
-== 数据结构
-
-* Log Structured Merge Trees(lsm)
-* Write Ahead Log(wal)

@@ -1,3 +1,0 @@
-== tricolour abstraction（三色抽象）
-
-# todo
