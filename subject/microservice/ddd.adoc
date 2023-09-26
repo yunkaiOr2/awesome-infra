@@ -1,4 +1,4 @@
-:imagesdir: ../../static/img
+:imagesdir: ../../diagram/drawio
 
 image::micro_ddd.dio.svg[]
 

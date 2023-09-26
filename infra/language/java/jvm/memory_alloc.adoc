@@ -1,4 +1,4 @@
-:imagesdir: ../../../../static/img
+:imagesdir: ../../../../diagram/drawio
 == JVM bump-the-pointer(撞针)
 
 > bump-the-pointer在对象创建时，只需要检查最后一个对象后面是否有足够的内存即可，从而加快内存分配速度。

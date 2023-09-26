@@ -1,4 +1,4 @@
-:imagesdir: ../../../static/img
+:imagesdir: ../../../diagram/drawio
 
 == Hbase读请求分析
 

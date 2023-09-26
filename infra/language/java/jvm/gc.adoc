@@ -1,4 +1,4 @@
-:imagesdir: ../../../../static/img
+:imagesdir: ../../../../diagram/drawio
 == 常规内存泄露问题的基本思路
 
 image::gc_analysis_step.dio.svg[]

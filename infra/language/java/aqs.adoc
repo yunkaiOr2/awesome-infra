@@ -45,11 +45,11 @@ class LockSupport {
     /**
      * 如果没有可用许可，则挂起当前线程
      */
-    public static void park();
+    public diagram void park();
     /**
      * 给thread一个可用的许可，让它得以继续执行
      */
-    public static void unpark(Thread thread);
+    public diagram void unpark(Thread thread);
 }
 ....
 

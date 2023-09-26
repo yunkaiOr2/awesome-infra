@@ -1,4 +1,4 @@
-:imagesdir: ../../static/img
+:imagesdir: ../../diagram/drawio
 == es
 
 === 环境准备

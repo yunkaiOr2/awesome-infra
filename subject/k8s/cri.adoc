@@ -1,4 +1,4 @@
-:imagesdir: ../../static/img
+:imagesdir: ../../diagram/drawio
 
 == CRI(Container Runtime Interface)
 

@@ -77,7 +77,7 @@ Singly Linked List
 | 
 
 . 双向链表Double Linked Lists
-. 静态链表Static List
+. 静态链表diagram List
 . 对称矩阵Symmetric Matrix
 . 稀疏矩阵 Sparse Matrix
 

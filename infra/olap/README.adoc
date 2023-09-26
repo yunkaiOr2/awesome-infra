@@ -1,4 +1,4 @@
-:imagesdir: ../../static/img
+:imagesdir: ../../diagram/drawio
 
 = 有哪些类型的OLAP数仓?
 

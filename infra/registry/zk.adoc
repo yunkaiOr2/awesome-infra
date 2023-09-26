@@ -1,4 +1,4 @@
-:imagesdir: ../../static/img
+:imagesdir: ../../diagram/drawio
 == cap
 
 zookeep保证CP，既任何时刻对zookeeper的访问请求能得到一致性的数据结果，同时系统对网络分割具备容错性，但是它不能保证每次服务的可用性。从实际情况来分析，在使用zookeeper获取服务列表是，如果zk正在选举或者zk集群中半数以上机器不可用，那么将无法获取数据。所以说zk不能保证可用性。

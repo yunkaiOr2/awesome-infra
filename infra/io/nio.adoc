@@ -1,4 +1,4 @@
-:imagesdir: ../../static/img
+:imagesdir: ../../diagram/drawio
 
 == NIO(Non-blocking I/O, 在Java领域，也称为New I/O)
 

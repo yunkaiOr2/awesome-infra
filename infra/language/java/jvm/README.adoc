@@ -1,5 +1,5 @@
 
-:imagesdir: ../../../../static/img
+:imagesdir: ../../../../diagram/drawio
 
 == java 8 内存模型
 

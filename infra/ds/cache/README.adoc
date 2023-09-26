@@ -1,7 +1,7 @@
 == 3个经典的缓存模式
 
 :kroki-fetch-diagram:
-:imagesdir: ../static/draw
+:imagesdir: ../diagram/draw
 
 * Cache-Aside pattern 旁路缓存模式
 [PlantUML, target=cache-aside-pattern, format=svg]

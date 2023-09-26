@@ -1,4 +1,4 @@
-:imagesdir: ../../static/img
+:imagesdir: ../../diagram/drawio
 == CAP定理（布鲁尔定理）
 
 > 在一个分布式系统中（值互相连接并共享数据的节点集合）中，当设计到读写操作时，智能保证Consistency（一致性）、Availability（可用性）、Partition tolerance（分区容错性），三者中的两个，另外一个必须被牺牲。

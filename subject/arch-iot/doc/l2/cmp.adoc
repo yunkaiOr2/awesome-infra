@@ -1,4 +1,4 @@
-:imagesdir: ../../../../static/img
+:imagesdir: ../../../../diagram/drawio
 
 = CMP(IoT Connectivity Management Platfrom)
 > 连接管理平台
