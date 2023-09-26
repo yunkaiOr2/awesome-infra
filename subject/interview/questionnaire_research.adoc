@@ -1,9 +1,0 @@
-== 问卷调查
-
-=== 需求分析
-
-通常
-
-=== 附录
-
-* https://elasticsearch.cn/slides/321#page=24[Elasticsearch 在腾讯问卷的应用]

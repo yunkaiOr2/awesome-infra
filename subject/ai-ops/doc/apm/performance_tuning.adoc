@@ -1,6 +1,0 @@
-
-
-== 附录
-
-* https://github.com/brendangregg/perf-tools[Performance analysis tools based on Linux perf_events (aka perf) and ftrace]
-* https://github.com/iovisor/bcc[BCC - Tools for BPF-based Linux IO analysis, networking, monitoring, and more]

@@ -1,6 +1,0 @@
-== PaddlePaddle飞浆
-
-=== 附录
-
-https://github.com/PaddlePaddle/PaddleNLP/tree/develop/applications[飞浆NLP应用]
-https://aistudio.baidu.com/aistudio/projectdetail/5382080[移动端部署]

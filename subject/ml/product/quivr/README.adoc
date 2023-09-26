@@ -1,9 +1,0 @@
-== Quivr
-> About Dump all your files and thoughts into your GenerativeAI Second Brain and chat with it
-
-=== 目标
-
-用自己训练的ai完成这个大脑
-
-=== 附录
-https://github.com/StanGirard/quivr
