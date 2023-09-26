@@ -1,10 +1,11 @@
-import { Graph } from '@antv/x6'
+import { Graph, Shape } from '@antv/x6'
 
 const graph = new Graph({
   container: document.getElementById('container'),
-  grid: true,
+//   grid: true,
+//   autoResize: true,
   background: {
-    "color": "rgb(229, 241, 254)"
+    "color": "#E5F1FE"
   }
 })
 
@@ -13,7 +14,7 @@ const source = graph.addNode({
   y: 40,
   width: 80,
   height: 40,
-  label: 'Hello',
+  label: 'IoT/PC/Mobile',
 })
 
 const target = graph.addNode({
@@ -21,7 +22,7 @@ const target = graph.addNode({
   y: 180,
   width: 80,
   height: 40,
-  label: 'IoT/PC/Mobile',
+  label: '网关',
 })
 
 graph.addEdge({
