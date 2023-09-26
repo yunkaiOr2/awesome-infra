@@ -1,9 +1,0 @@
-:imagesdir: ../../../diagram/drawio
-
-== LFU(Least Frequently Used)
-
-image::cache_lfu.dio.svg[]
-
-== LFU-Aging算法
-
-== Window-LFU算法

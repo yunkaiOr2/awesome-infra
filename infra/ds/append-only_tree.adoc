@@ -1,3 +1,0 @@
-== how the append-only btree workds
-
-http://www.bzero.se/ldapd/btree.html

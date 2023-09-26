@@ -1,4 +1,0 @@
-== WAL（write-ah ea log）
-
-> 重做日志
-
