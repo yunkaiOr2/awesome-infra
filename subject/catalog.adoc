@@ -11,5 +11,4 @@
 . ml 机器学习
 . oauth 鉴权
 . qt 量化交易
-. rCore 手写linux
 . tl team leader
