@@ -1,9 +1,0 @@
-== Pod
-
-Kubernetes停止pod会经过如下五个步骤：
-
-. pod切换到 **Terminating** 状态并且停止接受新流量，容器任然正常运行。
-. **preStop** hook 发送指定的命令或者http请求到容器内部
-. **SIGTERM** 发送sigterm信号给pod容器收到之后会有序退出
-. Kubernetes 会给pod一个宽限期 （**grace period(terminationGracePeriodSeconds)**） 默认30s，并发执行preStop,SGTERM，如果在宽限期内没有结束，k8s会直接进入下一步
-. **SIGKILL** 发送kill信号给pod，如果容器在超过宽限期依然存活，pod将被强制结束。

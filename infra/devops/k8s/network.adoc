@@ -1,7 +1,12 @@
-:imagesdir: ../../diagram/drawio
+:imagesdir: ../../../diagram/drawio
+
+== DNS
+
+$service_name.$namespace_name.svc.$cluster_name
+
+$pod_name.$service_name.$namespace_name.svc.$cluster_name
 
 == Ingress
-
 
 
 == 附录

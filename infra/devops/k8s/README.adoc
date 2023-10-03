@@ -1,7 +1,7 @@
-:imagesdir: ../../diagram/drawio
+:imagesdir: ../../../diagram/drawio
 = kubernetes
 
-include::keywords.adoc[]
+include::base.adoc[]
 
 == 常用命令
 
@@ -15,14 +15,11 @@ kubectl get svc --all-namespaces -o jsonpath='{range.items[?(@.status.loadBalanc
 
 # For Istio/Knative, the command will be different
 kubectl get svc --namespace=istio-system knative-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip} '
-
-
-
-# 
-#
-#
 # 
 kubectl rollout status deployment/kiali -n istio-system
+
+# 查询coredns的configMap
+kubectl get configmaps -n kube-system coredns -oyaml
 ....
 
 == 附录
