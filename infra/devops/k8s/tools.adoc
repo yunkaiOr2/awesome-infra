@@ -1,3 +1,4 @@
 == 工具
 
-* 
+* https://github.com/JamesTGrant/kubectl-debug[]
+* https://microk8s.io/docs/getting-started[Microk8s]

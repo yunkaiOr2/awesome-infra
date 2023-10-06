@@ -20,6 +20,8 @@ kubectl rollout status deployment/kiali -n istio-system
 
 # 查询coredns的configMap
 kubectl get configmaps -n kube-system coredns -oyaml
+# 进入pod内部
+kubectl exec -it pod-name -n ns -- /bin/bash
 ....
 
 == 附录
