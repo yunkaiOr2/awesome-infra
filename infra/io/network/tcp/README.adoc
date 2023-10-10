@@ -16,3 +16,13 @@ TCP提交给IP层最大分段大小，不包含TCP Header和TCP Option，只包�
 
 假设MTU=1500 byte，那么MSS=1500 - 20（IP Header） - 20（TCP Header）=1460 byte，如果应用层有2000 byte发送，那么需要两个切片才可以完成发送，第一个TCP
 切片=1460,第二个TCP切片=540
+
+=== TFO
+
+=== tcp发送缓存区
+
+```shell
+#min  default max 
+net.ipv4.tcp_wmen=8192 65536 16777216
+```
+

@@ -1,2 +1,0 @@
-:imagesdir: ../../diagram/drawio
-image::olap_hive-framework.dio.svg[]

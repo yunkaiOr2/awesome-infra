@@ -17,3 +17,42 @@
 
 == 全景
 
+=== 网关
+
+* api-market
+* apisex
+* Higress
+
+=== 治理面
+
+* Sentinel
+* ChaosBlade
+* AppActive
+
+=== 分布式事务
+
+* Seata
+
+=== 数据存储
+
+* MySQL
+* HBase
+
+=== 异步调用
+
+* RocketMQ
+* Kafka
+
+=== 控制面
+
+* Nacos
+* OpenSergo
+
+=== 可观测
+
+* Skywalking
+
+=== 运维面
+
+* Kubernetes
+* KubeVela

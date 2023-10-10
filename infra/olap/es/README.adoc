@@ -1,0 +1,40 @@
+:imagesdir: ../../../diagram/drawio
+== es
+
+=== 环境准备
+
+
+
+=== es写数据过程
+
+image::olap_es_read.dio.svg[]
+
+* 客户端选择一个node发送请求过去，这个node就是coordinating node（协调节点）。
+* coordinating node对document进行路由，将请求转发给对应的node（有primary shard）。
+* 实际的node上的primary shard处理请求，然后讲数据同步到replica node。
+* coordinaing node如果发现primary node和所有replica node都搞定之后，就返回响应结果给客户端。
+
+== es读数据过程
+
+可以根据doc id来查询，会根据doc id进行hash，判断出来当时把doc id分配到了哪个shard上面去，从哪个shard区查询
+
+* 客户端发送请求到任意一个node，成为coordinate note。
+* coordinate node对doc id进行哈希路由，将请求转发到对应的node，此时会使用round-robin随机轮训算法，在primary shard以及所有replica中随机一个，让读请求负载均衡。
+* 接收请求的node返回document给coordinate node。
+* coordinate node返回document给客户端。
+
+== es搜索数据过程
+
+* 客户端发送请求到一个coordinate node。
+* 协调节点将搜索请求转发到所有都shard对应的primary shard或replica shard，都可以。
+* query phase：每个shard将自己的搜索结果（其实就是一些doc id）返回给协调节点，由协调节点进行数据的合并、排序、分页等操作，产生最终结果。
+* fetch phase：接着由协调节点根据doc id去各个节点拉取实际的document数据，最终返回给客户端。
+
+== 写数据底层原理
+
+image::olap_es_write.dio.svg[]
+
+== 附录
+
+* https://cloud.tencent.com/developer/article/1739481[ES原理三连击 | 写入原理/查询原理/倒排索引]
+* https://www.cnblogs.com/sessionbest/articles/8689030.html[Lucene底层实现原理，它的索引结构]

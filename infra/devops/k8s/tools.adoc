@@ -1,4 +1,6 @@
 == 工具
 
-* https://github.com/JamesTGrant/kubectl-debug[]
+* https://github.com/JamesTGrant/kubectl-debug[kubectl-debug]
 * https://microk8s.io/docs/getting-started[Microk8s]
+* https://github.com/alexellis/arkade[arkade - The Open Source Kubernetes Marketplace]
+* https://argo-cd.readthedocs.io/en/stable/[Argo CD]

@@ -1,3 +1,5 @@
+:imagesdir: ../../../diagram/drawio
+
 == Kylin数据模型
 
 Kylin的数据模型本质上是将二维表（Hive表）转换为Cube，然后讲Cube存储到HBase表中，也就是两次转换。

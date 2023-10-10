@@ -1,7 +1,8 @@
-:imagesdir: ../../diagram/drawio
-== Presto
+:imagesdir: ../../../diagram/drawio
 
-=== Presto架构
+= Presto
+
+== Presto架构
 
 image::olap_presto_framework.dio.svg[]
 

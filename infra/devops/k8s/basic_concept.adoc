@@ -84,3 +84,9 @@ image::k8s_cri.dio.svg[]
 
 
 === Endpoints
+
+
+= 附录
+
+* https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md[Kubernetes API约定]
+* https://mp.weixin.qq.com/s/-CsK00RkXepZQXOxbNumEA[一关系图让你理解K8s中的概念，Pod、Service、Job等到底有啥关系]
