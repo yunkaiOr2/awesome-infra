@@ -3,18 +3,15 @@
 == 目录
 
 * 事务
-** link:article/acid.adoc[事务]
+** link:acid.adoc[事务]
 * 索引
-** link:article/index.adoc[索引]
+** link:index.adoc[索引]
 * 锁&并发
-** link:article/lock.adoc[锁]
-** link:article/mvcc.adoc[多版本并发控制(MVCC)]
+** link:lock.adoc[锁]
+** link:mvcc.adoc[多版本并发控制(MVCC)]
 * 扩展
-** link:article/shard.adoc[分库表]
+** link:shard.adoc[分库表]
 
-// include::acid.adoc[]
-
-// include::shard.adoc[]
 
 === 回表查询
 
