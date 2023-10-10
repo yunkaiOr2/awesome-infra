@@ -1,7 +1,7 @@
 :imagesdir: ../../../../diagram/drawio
 == 常规内存泄露问题的基本思路
 
-image::gc_analysis_step.dio.svg[]
+image::jvm_gc_analysis_step.dio.svg[]
 
 * *Dump Diff*
 * *Leak Suspects*
@@ -127,5 +127,4 @@ image::jvm_gc_zgc_concurrent_step.dio.svg[]
 == 附录
 
 * https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html[新一代垃圾回收器ZGC的探索与实践]
-
 * http://openjdk.java.net/jeps/376[JEP 376: ZGC: Concurrent Thread-Stack Processing]
