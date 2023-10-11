@@ -1,0 +1,6 @@
+:imagesdir: ../../../../diagram/drawio
+= JMM: Java内存模型
+
+== java 8 内存模型
+
+image::jvm_java8_mem.dio.svg[]

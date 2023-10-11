@@ -1,12 +1,9 @@
 
 :imagesdir: ../../../../diagram/drawio
 
-== java 8 内存模型
+= JVM
 
-image::jvm_java8_mem.dio.svg[]
+== 目录
 
-== GC
-
-include::gc.adoc[]
-
-
+* link:gc.adoc[gc]
+* link:jmm.adoc[Java内存模型]

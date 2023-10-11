@@ -1,0 +1,17 @@
+:imagesdir: ../../../diagram/drawio
+
+= OSI: 开放系统互联参考模型
+> open system interconnection
+
+image:osi_tcp_ip_protocol.dio.svg[]
+
+|===
+|OSI七层模型|TCP/IP5层模型|TCP/IP4层模型|功能|TCP/IP协议族
+|应用层 .3+|应用层 .3+|应用层|针对特定应用的协议eg: 文件传输、电子邮件、虚拟终端...|HTTP Telnet FTP TFTP DNS SMTP SSH
+|表示层|设备固有数据格式与网络标准数据格式之间的转换，数据加密|无
+|会话层|负责建立和断开通信连接|无
+|传输层|传输层|传输层|建立端口到端口的通信(端口表示供哪个进程使用)|TCP UDP
+|网络层|网络层|网络层|建立主机到主机的通信|IP ICMP RIP IGMP 
+|数据链路层|数据链路层 .2+|数据链路层|单纯的0和1没有意义，必须规定解读方式。这就是链路层存在的意义：它在”实体层“的上方确定了0和1的分组方式|ARP RAPP PPP SLIP CSLIP MTU
+|物理层|物理层|以二进制形式在物理设备上传输数据|ISO2110 IEEE802.1A IEEE802.2-IEEE802.11|
+|===

@@ -1,10 +1,10 @@
-:imagesdir: ../../diagram/drawio
+:imagesdir: ../../../diagram/drawio
 
-== NIO(Non-blocking I/O, 在Java领域，也称为New I/O)
+= NIO(Non-blocking I/O, 在Java领域，也称为New I/O)
 
 > 是一种同步非阻塞的I/O模型，也是I/O多路复用的基础。
 
-=== BIO（Blocking I/O）
+== BIO（Blocking I/O）
 
 这是一个经典的每连接每线程的模型，之所以使用多线程，主要原因在于socket.accept()、socket.read()、socket.write()三个主要函数都是阻塞的，当一个连接在处理I/O的时候，系统阻塞的，如果是单线程的话必然就挂死在那里；但CPU是被释放出来的，开启多线程，就可以让CPU去处理更多的事情。
 
@@ -30,3 +30,10 @@
 
 
 image::io_nio.dio.svg[]
+
+== 附录
+
+* https://juejin.cn/post/6941740139722997791?utm_source=gold_browser_extension[可能和你想象中不太一样的“IO多路复用扫盲贴”]
+* https://tech.meituan.com/2017/05/19/about-desk-io.html[磁盘I/O那些事]
+* https://tech.meituan.com/2016/11/04/nio.html[Java NIO浅析]
+* https://cloud.tencent.com/developer/article/1638042[TCP 半连接队列和全连接队列满了会发生什么？又该如何应对？]
